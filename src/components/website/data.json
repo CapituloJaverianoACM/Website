@@ -1,0 +1,51 @@
+{
+	"name": "ACM Website",
+	"year": 2018,
+	"university": {
+		"name": "Pontificia Universidad Javeriana",
+		"city": "Bogotá D.C - Colombia",
+		"direction": "Carrera 7 No. 40 - 62",
+		"phone": "(57 1) 3208320"
+	},
+	"networks": [
+		{
+			"text": "ACMJaveriana",
+			"link": "https://www.facebook.com/acmjaveriana/",
+			"icon": "acm-facebook"
+		},
+		{
+			"text": "ACMJaveriana",
+			"link": "https://twitter.com/ACMJaveriana",
+			"icon": "acm-twitter"
+		},
+		{
+			"text": "Capítulo Javeriano ACM",
+			"link": "https://www.youtube.com/channel/UC3PymX73H7qF6-VJS-wuyJA",
+			"icon": "acm-youtube"
+		},
+		{
+			"text": "CapituloJaverianoACM",
+			"link": "https://github.com/CapituloJaverianoACM",
+			"icon": "acm-github"
+		},
+		{
+			"text": "acm@javeriana.edu.co",
+			"link": "acm@javeriana.edu.co",
+			"icon": "acm-envelope"
+		}
+	],
+	"developers": [
+		{
+			"name": "Johan Sebastian Murillo Castillo",
+			"url": "https://github.com/johan-smc"
+		},
+		{
+			"name": "Juan Pablo Rodriguez Navarro",
+			"url": "https://github.com/JuanPabloRN30"
+		},
+		{
+			"name": "Juan Manuel Sánchez Lozano",
+			"url": "https://github.com/juanmsl"
+		}
+	]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "acm-website",
+  "description": "ACM Website develop in React",
+  "main": "gulpfile.babel.js",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-if": "^2.0.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-todo": "^5.4.0",
+    "vinyl-paths": "^2.1.0"
+  },
+  "homepage": "https://github.com/CapituloJaverianoACM/Website#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CapituloJaverianoACM/Website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CapituloJaverianoACM/Website/issues"
+  },
+  "keywords": [
+    "react",
+    "html",
+    "sass",
+    "webpage"
+  ],
+  "author": "Juan Manuel Sánchez Lozano <juanmsl_pk@hotmail.com>",
+  "license": "GPL-3.0",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "os": [
+    "linux"
+  ]
+}
