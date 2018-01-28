@@ -76,20 +76,6 @@ $('.acm-activities').owlCarousel({
 	autoplayHoverPause: true
 })
 
-document.sendQuestionEmail = () => {
-	const form = document.getElementById("questionform");
-	const data = getFormData(form);
-	$.ajax({
-		type: "POST",
-		url: "/sendQuestionEmail/",
-		data: data,
-		success: function(response) {
-			console.log(response);
-			alertify.success(response.state);
-		}
-	});
-}
-
 document.sendJoinForm = () => {
 	const form = document.getElementById("joinform");
 	const data = getFormData(form);

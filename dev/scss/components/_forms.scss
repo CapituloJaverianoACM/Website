@@ -81,6 +81,7 @@
 			border: 1px solid $gray-9;
 			border-radius: 25px;
 			outline: 0;
+			background: $white;
 
 			&:valid ~ label, &:focus ~ label {
 				background: $white;

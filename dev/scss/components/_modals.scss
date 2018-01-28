@@ -7,7 +7,6 @@
 	background-image: radial-gradient(at 50% -16%, rgba($secondary-color,0.5) 0%, $primary-darker-color 190%);
 	background-blend-mode: normal,multiply;
 	z-index: z-index(modal);
-	display: none;
 
 	.acm-modal {
 		height: 100%;
