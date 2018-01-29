@@ -1,4 +1,5 @@
 import React from 'react';
+import { NotificationContainer } from 'react-notifications';
 import { Navbar, Footer, JoinModal } from './..';
 
 export default class ACMWebPage extends React.Component {
@@ -11,7 +12,6 @@ export default class ACMWebPage extends React.Component {
 
 	toggleJoinModal = (e) => {
 		e.preventDefault();
-		console.log("Hola " + this.state.joinModal);
 		this.setState((prevState) => ({
 			joinModal: !prevState.joinModal
 		}));
@@ -32,6 +32,7 @@ export default class ACMWebPage extends React.Component {
 						<Footer networks={data.networks} developers={data.developers} university={data.university} name={data.name} year={data.year}/>
 					</React.Fragment>
 				}
+				<NotificationContainer/>
 			</React.Fragment>
 		);
 	}

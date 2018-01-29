@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
+import { NotificationManager } from 'react-notifications';
 import icon from './javeriana_icon.png';
 
 class Developer  extends React.Component {
@@ -53,9 +54,12 @@ class ContactForm extends React.Component {
 			type: "POST",
 			url: "https://127.0.0.1:8000/sendQuestionEmail/",
 			data: this.state,
+			timeout: 2000,
 			success: function(response) {
-				console.log(response);
-				//alertify.success(response.state);
+				NotificationManager.success("message", "title", 5000);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
 			}
 		});
 	};

@@ -21,6 +21,10 @@ const config = {
 		"src": "fonts/**/*",
 		"dest": "fonts"
 	},
+	"images": {
+		"src": "images/**/*",
+		"dest": "images"
+	},
 	"todolist": {
 		"src": "**/*.!(eot|svg|png|jpg|jpeg|gif|ttf|woff|woff2|otf|md)",
 		"todo": {

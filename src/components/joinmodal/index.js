@@ -1,4 +1,6 @@
+import $ from 'jquery';
 import React from 'react';
+import { NotificationManager } from 'react-notifications';
 
 export default class JoinModal extends React.Component {
 	constructor(props) {
@@ -34,7 +36,18 @@ export default class JoinModal extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(this.state);
+		$.ajax({
+			type: "POST",
+			url: "https://127.0.0.1:8000/sendQuestionEmail/",
+			data: this.state,
+			timeout: 2000,
+			success: function(response) {
+				NotificationManager.success("message", "title", 5000);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
+			}
+		});
 	}
 
 	render() {
