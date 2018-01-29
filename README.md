@@ -3,6 +3,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project is the Frontend of ACM chapter webpage, is develop with [React.js](https://reactjs.org/), to see the Backend develop in [Django](https://www.djangoproject.com/), visit the [WebSiteAPI repository](https://github.com/CapituloJaverianoACM/WebSiteAPI)
 
+## Table of contents
+
+- [Contributors](#contributors)
+- [Prerequisites](#prerequisites)
+	- [Node (npm)](#node-npm)
+- [Installation](#installation)
+	- [Clone the repository](#clone-the-repository)
+	- [Install the requirements](#install-the-requirements)
+- [Running the ReactApp](#running-the-reactapp)
+- [Gulp tasks](#gulp-tasks)
+- [Licence](#licence)
+
 ## Contributors
 | Name                       | GitHub                                | Rol                |
 | -------------------------- | ------------------------------------- | ------------------ |
@@ -10,7 +22,7 @@ This project is the Frontend of ACM chapter webpage, is develop with [React.js](
 
 ## Prerequisites
 
-We recommend work on Linux or on a UNix system, because it's easier to install packages and frameworks; but, if you want to work on Windows you can do it.
+We recommend work on Linux or on a Unix system, because it's easier to install packages and frameworks; but, if you want to work on Windows you can do it.
 
 ### Node (npm)
 
