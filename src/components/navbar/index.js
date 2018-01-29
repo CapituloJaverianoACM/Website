@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import icon from './icon_blue.svg';
 
 class NavbarItem extends React.Component {
@@ -7,7 +8,7 @@ class NavbarItem extends React.Component {
 		const {active, url, text} = this.props;
 		return (
 			<li className={`acm-navbar_menuitem ${active ? "acm-navbar__current" : ""}`}>
-				<a href={url} className="acm-navbar_link">{text}</a>
+				<Link to={url} className="acm-navbar_link">{text}</Link>
 			</li>
 		);
 	}

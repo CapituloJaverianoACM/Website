@@ -1,7 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { /*HomeScene,*/ StaffScene } from './scenes';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { HomeScene, StaffScene } from './scenes';
 import './static/css/styles.css';
 import data from './data.json';
 
-ReactDOM.render(<StaffScene data={data}/>, document.getElementById('root'));
+class App extends React.Component {
+
+	homeScene = () => (
+		<HomeScene data={data}/>
+	)
+
+	staffScene = () => (
+		<StaffScene data={data}/>
+	)
+
+	render() {
+		return (
+			<BrowserRouter>
+				<React.Fragment>
+					<Route exact path="/" component={this.homeScene}/>
+					<Route exact path="/staff" component={this.staffScene}/>
+				</React.Fragment>
+			</BrowserRouter>
+		);
+	}
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));
