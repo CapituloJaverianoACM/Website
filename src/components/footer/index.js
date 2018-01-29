@@ -92,15 +92,13 @@ export default class Footer extends React.Component {
 					<section className="footer_section">
 						<h6 className="footer_section_title">Redes sociales</h6>
 						{networks.map((network, i) => {
-							const {link, text, icon} = network;
-							return <Network key={i} link={link} text={text} icon={icon} />;
+							return <Network key={i} {...network} />;
 						})}
 					</section>
 					<section className="footer_section">
 						<h6 className="footer_section_title">Desarrolladores encargados</h6>
 						{developers.map((developer, i) => {
-							const {name, url} = developer;
-							return <Developer key={i} name={name} url={url} />;
+							return <Developer key={i} {...developer} />;
 						})}
 					</section>
 					<section className="footer_section">

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import React from 'react';
 import icon from './icon_blue.svg';
 
@@ -56,6 +57,10 @@ export default class Navbar extends React.Component {
 		};
 	}
 
+	handleNavbar = () => {
+		$('#acm-navbar').slideToggle();
+	};
+
 	render() {
 		const { links } = this.state;
 		const { currentPage, toggleJoinModal } = this.props;
@@ -64,12 +69,11 @@ export default class Navbar extends React.Component {
 				<img src={icon} alt="ACM logo" className="acm-navbar_logo"/>
 				<ul className="acm-navbar_menu" id="acm-navbar">
 					{links.map((link, i) => {
-						const {url, text} = link;
-						return <NavbarItem key={i} active={currentPage === i} url={url} text={text} />
+						return <NavbarItem key={i} active={currentPage === i} {...link} />
 					})}
 					<NavbarModalTrigger text="¡Unete!" toggleJoinModal={toggleJoinModal}/>
 				</ul>
-				<span className="acm-navbar_trigger acm acm-bars" id="navbarTrigger" target="#acm-navbar" />
+				<span className="acm-navbar_trigger acm acm-bars" id="navbarTrigger" onClick={this.handleNavbar} />
 			</nav>
 		);
 	}

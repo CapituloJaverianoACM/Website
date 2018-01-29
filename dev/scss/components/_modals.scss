@@ -19,6 +19,7 @@
 	.full-modal {
 		align-items: stretch;
 		display: block;
+		animation: intro 0.5s ease;
 
 		.acm-modal_content {
 			min-height: 100%;
