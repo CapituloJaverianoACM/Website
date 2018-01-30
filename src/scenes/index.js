@@ -1,5 +1,8 @@
+export { default as TutorialScene } from './tutorial';
 export { default as TutorialsScene } from './tutorials';
+export { default as ProjectScene } from './project';
 export { default as ProjectsScene } from './projects';
+export { default as ActivityScene } from './activity';
 export { default as ActivitiesScene } from './activities';
 export { default as MaratonsScene } from './maratons';
 export { default as StaffScene } from './staff';

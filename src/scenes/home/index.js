@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import { ACMWebPage } from '../../components';
+import { ACMWebPage, Slider } from '../../components';
 import acmIcon from './acm_icon.png';
 import acmChapterIconBlue from './icon_blue.svg';
 import acmChapterIconWhite from './icon_white.svg';
@@ -39,12 +40,12 @@ class Activity extends React.Component {
 
 class Project extends React.Component {
 	render() {
-		const {picture, title} = this.props;
+		const {picture, id, title} = this.props;
 		return (
-			<article className="acm-projects_project">
+			<Link to={`/proyecto/${id}`} className="acm-projects_project">
 				<img className="acm-projects_projectpicture" src={picture} alt="Project" />
 				<h5 className="acm-projects_projecttitle">{title}</h5>
-			</article>
+			</Link>
 		);
 	}
 }
@@ -83,22 +84,27 @@ export default class HomeScene extends React.Component {
 			],
 			projects: [
 				{
+					id: 1,
 					picture: "https://andro4all.com/files/2016/10/Instagram-suici-700x500.jpg",
 					title: "Instagram colegios"
 				},
 				{
+					id: 2,
 					picture: "http://www.ustatunja.edu.co/ustatunja/cache/2/e24163016c5c0296deb6cddf158e8593.jpg",
 					title: "Juez virtual"
 				},
 				{
+					id: 3,
 					picture: "http://omicrono.elespanol.com/wp-content/uploads/2017/02/estados-de-whatsapp.jpg",
 					title: "WhatsDown APP"
 				},
 				{
+					id: 4,
 					picture: "http://www.anahuac.mx/mexico/sites/default/files/2017-02/Realizamos-Simposio-Capital-privado-y-negocios-innovadores.jpg",
 					title: "Simposio"
 				},
 				{
+					id: 5,
 					picture: "http://www.trazos-web.com/wp-content/uploads/2015/10/13-frameworks-de-php-para-desarrolladores-web-b-800x384.jpg",
 					title: "Sitio web de ACM"
 				}
@@ -185,11 +191,11 @@ export default class HomeScene extends React.Component {
 				{activities.length > 0 &&
 					<section className="acm-full-section">
 						<h1 className="sub_title acm-section_title">Actividades del capítulo</h1>
-						<section className="acm-activities">
+						<Slider className="acm-activities">
 							{activities.map((activity, i) => {
 								return <Activity key={i} {...activity}/>;
 							})}
-						</section>
+						</Slider>
 					</section>
 				}
 				{projects.length > 0 &&

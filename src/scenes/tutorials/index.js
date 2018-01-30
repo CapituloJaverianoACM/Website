@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ACMWebPage } from '../../components';
 
 class Tutorial extends React.Component {
 	render() {
 		const {id, title, picture, description} = this.props;
 		return (
-			<a className="acm-card" href={`/actividad/${id}`}>
+			<Link className="acm-card" to={`/actividad/${id}`}>
 				<h6 className="acm-card_title">{title}</h6>
 				<img className="acm-card_image" src={picture} alt="Tutorial" />
 				<p className="acm-card_description">{description}</p>
-			</a>
+			</Link>
 		);
 	}
 }

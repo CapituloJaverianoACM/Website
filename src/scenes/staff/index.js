@@ -24,29 +24,7 @@ export default class StaffScene extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			members: [
-				{
-					picture: "https://cdn4.iconfinder.com/data/icons/smileys-3/24/smiley-smile--512.png",
-					names: "Juan Manuel",
-					surnames: "Sánchez Lozano",
-					rol: "Presidente",
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac. Donec eros justo, laoreet ac leo ac, molestie eleifend turpis. Pellentesque sagittis mi rhoncus, laoreet erat quis, condimentum leo. Nullam non eros finibus, luctus nibh in, lobortis."
-				},
-				{
-					picture: "https://cdn4.iconfinder.com/data/icons/smileys-3/24/smiley-smile--512.png",
-					names: "Juan Pablo",
-					surnames: "Rodriguez Navarro",
-					rol: "Presidente",
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac. Donec eros justo, laoreet ac leo ac, molestie eleifend turpis. Pellentesque sagittis mi rhoncus, laoreet erat quis, condimentum leo. Nullam non eros finibus, luctus nibh in, lobortis."
-				},
-				{
-					picture: "https://cdn4.iconfinder.com/data/icons/smileys-3/24/smiley-smile--512.png",
-					names: "Juan Manuel",
-					surnames: "Sánchez Lozano",
-					rol: "Presidente",
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac. Donec eros justo, laoreet ac leo ac, molestie eleifend turpis. Pellentesque sagittis mi rhoncus, laoreet erat quis, condimentum leo. Nullam non eros finibus, luctus nibh in, lobortis."
-				}
-			]
+			members: []
 		};
 	}
 
