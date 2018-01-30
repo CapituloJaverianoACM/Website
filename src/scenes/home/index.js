@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
+import { NotificationManager } from 'react-notifications';
 import { ACMWebPage } from '../../components';
 import acmIcon from './acm_icon.png';
 import acmChapterIconBlue from './icon_blue.svg';
@@ -86,14 +87,16 @@ export default class HomeScene extends React.Component {
 
 	getProjects = () => {
 		$.ajax({
-			type: 'POST',
-			url: '',
+			type: "POST",
+			url: "https://127.0.0.1:8000/sendQuestionEmail/",
+			data: this.state,
+			timeout: 2000,
 			success: function(response) {
-				console.log(this.state);
-				this.setState({
-					projects: response.projects
-				});
-			}.bind(this)
+				NotificationManager.success("message", "title", 5000);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
+			}
 		});
 	};
 

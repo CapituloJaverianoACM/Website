@@ -40,12 +40,14 @@ class ContactForm extends React.Component {
 		};
 	}
 
-	handleEmail = (e) => {
-		this.setState({ email: e.target.value });
-	};
+	handleInput = (e) => {
+		const target = e.target;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const name = target.name;
 
-	handleMessage = (e) => {
-		this.setState({ message: e.target.value });
+		this.setState({
+			[name]: value
+		});
 	};
 
 	handleSubmit = (e) => {
@@ -67,10 +69,10 @@ class ContactForm extends React.Component {
 	render() {
 		const {email, message} = this.state;
 		return (
-			<form className="contact-form" onSubmit={this.handleSubmit}>
+			<form className="contact-form" onSubmit={this.handleInput}>
 				<textarea name="message" rows="3" placeholder="Tu mensaje, comentario ó sugerencia" className="contact-form_message" value={message} onChange={this.handleMessage} required/>
 				<section className="contact-form_section">
-					<input type="email" placeholder="Correo" name="email" className="contact-form_email" value={email} onChange={this.handleEmail} required/>
+					<input type="email" placeholder="Correo" name="email" className="contact-form_email" value={email} onChange={this.handleInput} required/>
 					<button className="btn btn_active contact-form_submit">Enviar</button>
 				</section>
 			</form>

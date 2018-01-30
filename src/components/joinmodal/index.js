@@ -14,24 +14,14 @@ export default class JoinModal extends React.Component {
 		};
 	}
 
-	handleNames = (e) => {
-		this.setState({ names: e.target.value });
-	};
+	handleInput = (e) => {
+		const target = e.target;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const name = target.name;
 
-	handleSurnames = (e) => {
-		this.setState({ surnames: e.target.value });
-	};
-
-	handleEmail = (e) => {
-		this.setState({ email: e.target.value });
-	};
-
-	handleMajor = (e) => {
-		this.setState({ major: e.target.value });
-	};
-
-	handleReason = (e) => {
-		this.setState({ reason: e.target.value });
+		this.setState({
+			[name]: value
+		});
 	};
 
 	handleSubmit = (e) => {
@@ -61,19 +51,19 @@ export default class JoinModal extends React.Component {
 						<form className="acm-form" onSubmit={this.handleSubmit}>
 							<h2 className="sub_title acm-form_title">¿Quieres participar en maratones?</h2>
 							<article className="acm-form_item">
-								<input type="text" name="names" id="join-names" onChange={this.handleNames} required />
+								<input type="text" name="names" id="join-names" onChange={this.handleInput} required />
 								<label htmlFor="join-names">Nombres</label>
 							</article>
 							<article className="acm-form_item">
-								<input type="text" name="surnames" id="join-surnames" onChange={this.handleSurnames} required />
+								<input type="text" name="surnames" id="join-surnames" onChange={this.handleInput} required />
 								<label htmlFor="join-surnames">Apellidos</label>
 							</article>
 							<article className="acm-form_item">
-								<input type="email" name="email" id="join-email" pattern="[A-Za-z0-9_\-.]*@javeriana.edu.co" onChange={this.handleEmail} required />
+								<input type="email" name="email" id="join-email" pattern="[A-Za-z0-9_\-.]*@javeriana.edu.co" onChange={this.handleInput} required />
 								<label htmlFor="join-email">Correo</label>
 							</article>
 							<article className="acm-form_item">
-								<select name="major" id="join-major" onChange={this.handleMajor} required >
+								<select name="major" id="join-major" onChange={this.handleInput} required >
 									<option></option>
 									<option value="IS">Ingeniería de Sistemas</option>
 									<option value="IE">Ingeniería Electronica</option>
@@ -85,7 +75,7 @@ export default class JoinModal extends React.Component {
 								<label htmlFor="join-major">Tu carrera</label>
 							</article>
 							<article className="acm-form_item">
-								<textarea rows="5" name="reason" id="join-reason" onChange={this.handleReason} required />
+								<textarea rows="5" name="reason" id="join-reason" onChange={this.handleInput} required />
 								<label htmlFor="join-reason">¿ Cómo te enteraste de ACM ?</label>
 							</article>
 							<button className="btn btn_active">Enviar</button>

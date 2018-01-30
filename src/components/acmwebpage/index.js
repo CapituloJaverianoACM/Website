@@ -10,6 +10,10 @@ export default class ACMWebPage extends React.Component {
 		};
 	}
 
+	componentDidMount() {
+		window.scrollTo(0, 0);
+	}
+
 	toggleJoinModal = (e) => {
 		e.preventDefault();
 		this.setState((prevState) => ({
