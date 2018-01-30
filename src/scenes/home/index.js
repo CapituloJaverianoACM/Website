@@ -54,8 +54,55 @@ export default class HomeScene extends React.Component {
 		super(props);
 		this.state = {
 			awards: [],
-			activities: [],
-			projects: []
+			activities: [
+				{
+					picture: "https://www.acm.org/binaries/content/gallery/acm/ctas/ambassadors-for-acm.jpg/ambassadors-for-acm.jpg",
+					title: "Bienvenida de ACM",
+					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
+				},
+				{
+					picture: "https://www.acm.org/binaries/content/gallery/acm/ctas/acm-sym-branded.jpg/acm-sym-branded.jpg",
+					title: "Cumpleaños de ACM",
+					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
+				},
+				{
+					picture: "http://www.techspire.net/wp-content/uploads/2016/11/python-django-logo.jpg",
+					title: "Taller Django",
+					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
+				},
+				{
+					picture: "https://xebialabs.com/assets/files/plugins/git.jpg",
+					title: "Taller Git",
+					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
+				},
+				{
+					picture: "http://1.bp.blogspot.com/-cLpkBdoN64A/VkzS7hc725I/AAAAAAAAAdA/0AaTO29c7UY/s1600/bigpreview_Computer%2BBrain.jpg",
+					title: "Taller repaso Pensamiento algoritmico",
+					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
+				}
+			],
+			projects: [
+				{
+					picture: "https://andro4all.com/files/2016/10/Instagram-suici-700x500.jpg",
+					title: "Instagram colegios"
+				},
+				{
+					picture: "http://www.ustatunja.edu.co/ustatunja/cache/2/e24163016c5c0296deb6cddf158e8593.jpg",
+					title: "Juez virtual"
+				},
+				{
+					picture: "http://omicrono.elespanol.com/wp-content/uploads/2017/02/estados-de-whatsapp.jpg",
+					title: "WhatsDown APP"
+				},
+				{
+					picture: "http://www.anahuac.mx/mexico/sites/default/files/2017-02/Realizamos-Simposio-Capital-privado-y-negocios-innovadores.jpg",
+					title: "Simposio"
+				},
+				{
+					picture: "http://www.trazos-web.com/wp-content/uploads/2015/10/13-frameworks-de-php-para-desarrolladores-web-b-800x384.jpg",
+					title: "Sitio web de ACM"
+				}
+			]
 		};
 	}
 
