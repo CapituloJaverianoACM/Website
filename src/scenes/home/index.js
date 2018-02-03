@@ -2,10 +2,25 @@ import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { NotificationManager } from 'react-notifications';
-import { ACMWebPage, Slider } from '../../components';
+import { ACMWebPage } from '../../components';
 import acmIcon from './acm_icon.png';
 import acmChapterIconBlue from './icon_blue.svg';
 import acmChapterIconWhite from './icon_white.svg';
+
+class AboutSection extends React.Component {
+	render() {
+		const { icon, title, text } = this.props;
+		return (
+			<article className="acm-aboutus_section">
+				<img className="acm-aboutus_picturesection" src={icon} alt="ACM logo"/>
+				<section className="acm-aboutus_contentsection">
+					<h2 className="sub_title acm-aboutus_titlesection">{title}</h2>
+					<p className="acm-aboutus_textsection">{text}</p>
+				</section>
+			</article>
+		);
+	}
+}
 
 class Award extends React.Component {
 	render() {
@@ -23,17 +38,12 @@ class Award extends React.Component {
 
 class Activity extends React.Component {
 	render() {
-		const {picture, title, description} = this.props;
+		const {picture, id, title} = this.props;
 		return (
-			<article className="acm-activities_activity item">
-				<section className="acm-activities_activitytext">
-					<h3>{title}</h3>
-					<p>{description}</p>
-				</section>
-				<section className="acm-activities_activityimage">
-					<img src={picture} alt="Activity" />
-				</section>
-			</article>
+			<Link to={`/actividad/${id}`} className="acm-grid_element">
+				<img className="acm-grid_elementpicture" src={picture} alt="Project" />
+				<h5 className="acm-grid_elementtitle">{title}</h5>
+			</Link>
 		);
 	}
 }
@@ -42,9 +52,9 @@ class Project extends React.Component {
 	render() {
 		const {picture, id, title} = this.props;
 		return (
-			<Link to={`/proyecto/${id}`} className="acm-projects_project">
-				<img className="acm-projects_projectpicture" src={picture} alt="Project" />
-				<h5 className="acm-projects_projecttitle">{title}</h5>
+			<Link to={`/proyecto/${id}`} className="acm-grid_element">
+				<img className="acm-grid_elementpicture" src={picture} alt="Project" />
+				<h5 className="acm-grid_elementtitle">{title}</h5>
 			</Link>
 		);
 	}
@@ -55,60 +65,8 @@ export default class HomeScene extends React.Component {
 		super(props);
 		this.state = {
 			awards: [],
-			activities: [
-				{
-					picture: "https://www.acm.org/binaries/content/gallery/acm/ctas/ambassadors-for-acm.jpg/ambassadors-for-acm.jpg",
-					title: "Bienvenida de ACM",
-					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
-				},
-				{
-					picture: "https://www.acm.org/binaries/content/gallery/acm/ctas/acm-sym-branded.jpg/acm-sym-branded.jpg",
-					title: "Cumpleaños de ACM",
-					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
-				},
-				{
-					picture: "http://www.techspire.net/wp-content/uploads/2016/11/python-django-logo.jpg",
-					title: "Taller Django",
-					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
-				},
-				{
-					picture: "https://xebialabs.com/assets/files/plugins/git.jpg",
-					title: "Taller Git",
-					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
-				},
-				{
-					picture: "http://1.bp.blogspot.com/-cLpkBdoN64A/VkzS7hc725I/AAAAAAAAAdA/0AaTO29c7UY/s1600/bigpreview_Computer%2BBrain.jpg",
-					title: "Taller repaso Pensamiento algoritmico",
-					description: "massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis blandit turpis cursus in hac habitasse platea dictumst"
-				}
-			],
-			projects: [
-				{
-					id: 1,
-					picture: "https://andro4all.com/files/2016/10/Instagram-suici-700x500.jpg",
-					title: "Instagram colegios"
-				},
-				{
-					id: 2,
-					picture: "http://www.ustatunja.edu.co/ustatunja/cache/2/e24163016c5c0296deb6cddf158e8593.jpg",
-					title: "Juez virtual"
-				},
-				{
-					id: 3,
-					picture: "http://omicrono.elespanol.com/wp-content/uploads/2017/02/estados-de-whatsapp.jpg",
-					title: "WhatsDown APP"
-				},
-				{
-					id: 4,
-					picture: "http://www.anahuac.mx/mexico/sites/default/files/2017-02/Realizamos-Simposio-Capital-privado-y-negocios-innovadores.jpg",
-					title: "Simposio"
-				},
-				{
-					id: 5,
-					picture: "http://www.trazos-web.com/wp-content/uploads/2015/10/13-frameworks-de-php-para-desarrolladores-web-b-800x384.jpg",
-					title: "Sitio web de ACM"
-				}
-			]
+			activities: [],
+			projects: []
 		};
 	}
 
@@ -165,18 +123,8 @@ export default class HomeScene extends React.Component {
 					<h1 className="title">Capítulo Javeriano ACM</h1>
 				</header>
 				<section className="acm-full-section acm-aboutus">
-					<section className="acm-aboutus_content">
-						<article className="acm-aboutus_section">
-							<img className="acm-aboutus_picturesection" src={acmIcon} alt="ACM logo"/>
-							<h2 className="sub_title acm-aboutus_titlesection">¿Qué es ACM?</h2>
-							<p className="acm-aboutus_textsection">{queEsACM}</p>
-						</article>
-						<article className="acm-aboutus_section">
-							<img className="acm-aboutus_picturesection" src={acmChapterIconBlue} alt="ACM chapter logo"/>
-							<h2 className="sub_title acm-aboutus_titlesection">¿Qué es el capítulo?</h2>
-							<p className="acm-aboutus_textsection">{queEsCapituloACM}</p>
-						</article>
-					</section>
+					<AboutSection icon={acmIcon} title="¿Qué es ACM?" text={queEsACM} />
+					<AboutSection icon={acmChapterIconBlue} title="¿Qué es el capítulo?" text={queEsCapituloACM} />
 				</section>
 				{awards.length > 0 &&
 					<section className="acm-full-section">
@@ -191,18 +139,20 @@ export default class HomeScene extends React.Component {
 				{activities.length > 0 &&
 					<section className="acm-full-section">
 						<h1 className="sub_title acm-section_title">Actividades del capítulo</h1>
-						<Slider className="acm-activities">
-							{activities.map((activity, i) => {
-								return <Activity key={i} {...activity}/>;
-							})}
-						</Slider>
+						<section className="acm-activities">
+							<section className="acm-grid-5 style-2">
+								{activities.map((activity, i) => {
+									return <Activity key={i} {...activity}/>;
+								})}
+							</section>
+						</section>
 					</section>
 				}
 				{projects.length > 0 &&
 					<section className="acm-full-section">
 						<h1 className="sub_title acm-section_title">Nuestros proyectos</h1>
 						<section className="acm-projects">
-							<section className="acm-projectscontent">
+							<section className="acm-grid-5 style-1">
 								{projects.map((project, i) => {
 									return <Project key={i} {...project}/>;
 								})}

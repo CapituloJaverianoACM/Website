@@ -9,8 +9,7 @@ class Developer  extends React.Component {
 		return (
 			<p>
 				<a href={url} target="_blank">
-					<span className="acm acm-user footer_icon"/>
-					<span>{name}</span>
+					<span className="acm acm-user footer_icon">{name}</span>
 				</a>
 			</p>
 		);
@@ -23,8 +22,7 @@ class Network extends React.Component {
 		return (
 			<p>
 				<a href={link} target="_blank">
-					<span className={`acm ${icon} footer_icon`}/>
-					<span>{text}</span>
+					<span className={`acm ${icon} footer_icon`}>{text}</span>
 				</a>
 			</p>
 		);

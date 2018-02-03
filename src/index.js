@@ -49,7 +49,7 @@ class App extends React.Component {
 			<BrowserRouter>
 				<React.Fragment>
 					<Route exact path="/" component={this.homeScene}/>
-					<Route exact path="/staff" component={this.staffScene}/>
+					<Route exact path="/miembros" component={this.staffScene}/>
 					<Route exact path="/maratones" component={this.maratonsScene}/>
 					<Route exact path="/actividades" component={this.activitiesScene}/>
 					<Route exact path="/actividad/:activityId" component={this.activityScene}/>

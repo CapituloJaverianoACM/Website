@@ -34,7 +34,7 @@ export default class StaffScene extends React.Component {
 		return (
 			<ACMWebPage data={data} currentPage={1}>
 				<header className="acm-cover">
-					<h1 className="title">Staff del capitulo</h1>
+					<h1 className="title">Miembros del capitulo</h1>
 				</header>
 				<section className="acm-staff">
 					{members.map((member, i) => {

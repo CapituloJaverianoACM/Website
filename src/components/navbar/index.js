@@ -35,8 +35,8 @@ export default class Navbar extends React.Component {
 					text: "Inicio"
 				},
 				{
-					url: "/staff",
-					text: "Staff"
+					url: "/miembros",
+					text: "Miembros"
 				},
 				{
 					url: "/maratones",

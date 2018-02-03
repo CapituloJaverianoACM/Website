@@ -30,10 +30,6 @@
 
 	@include from(tablet) {
 		padding: $padding * 15;
-
-		.title {
-			transform: translatey(25%);
-		}
 	}
 }
 
@@ -73,4 +69,13 @@
 		margin-top: $margin * 3;
 		border-radius: 100px;
 	}
+}
+
+.acm-activity-cover {
+	background: $activitycover-background;
+	color: $activitycover-color;
+	padding: $padding * 5;
+	padding-bottom: $padding * 2;
+	padding-left: $padding * 2;
+	border-bottom: 10px solid $primary-color;
 }

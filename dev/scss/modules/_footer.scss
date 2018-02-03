@@ -33,7 +33,17 @@
 	}
 
 	.footer_icon {
-		margin-right: $margin;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&::before {
+			width: 20px;
+		}
+
+		@include from(laptop) {
+			justify-content: flex-start;
+		}
 	}
 
 	.footer_content {
@@ -54,9 +64,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		text-align: center;
 
-		@include from(laptop) {
+		@include from(pc) {
 			flex-direction: row;
+			text-align: left;
 		}
 	}
 
