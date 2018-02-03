@@ -70,14 +70,18 @@ export default class HomeScene extends React.Component {
 		};
 	}
 
+	componentDidMount() {
+		this.getAwards();
+	}
+
 	getAwards = () => {
 		$.ajax({
 			type: 'POST',
-			url: '',
+			url: this.props.data.host + "/awards",
 			success: function(response) {
 				console.log(this.state);
 				this.setState({
-					awards: response.awards
+					awards: response
 				});
 			}.bind(this)
 		});
