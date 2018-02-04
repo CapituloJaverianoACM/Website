@@ -14,7 +14,7 @@ class AboutSection extends React.Component {
 			<article className="acm-aboutus_section">
 				<img className="acm-aboutus_picturesection" src={icon} alt="ACM logo"/>
 				<section className="acm-aboutus_contentsection">
-					<h2 className="sub_title acm-aboutus_titlesection">{title}</h2>
+					<h1 className="acm-aboutus_titlesection">{title}</h1>
 					<p className="acm-aboutus_textsection">{text}</p>
 				</section>
 			</article>
@@ -38,11 +38,11 @@ class Award extends React.Component {
 
 class Activity extends React.Component {
 	render() {
-		const {picture, id, title} = this.props;
+		const {id, name, poster} = this.props;
 		return (
 			<Link to={`/actividad/${id}`} className="acm-grid_element">
-				<img className="acm-grid_elementpicture" src={picture} alt="Project" />
-				<h5 className="acm-grid_elementtitle">{title}</h5>
+				<img className="acm-grid_elementpicture" src={poster} alt="Project" />
+				<h5 className="acm-grid_elementtitle">{name}</h5>
 			</Link>
 		);
 	}
@@ -50,11 +50,11 @@ class Activity extends React.Component {
 
 class Project extends React.Component {
 	render() {
-		const {picture, id, title} = this.props;
+		const {poster, id, name} = this.props;
 		return (
 			<Link to={`/proyecto/${id}`} className="acm-grid_element">
-				<img className="acm-grid_elementpicture" src={picture} alt="Project" />
-				<h5 className="acm-grid_elementtitle">{title}</h5>
+				<img className="acm-grid_elementpicture" src={poster} alt="Project" />
+				<h5 className="acm-grid_elementtitle">{name}</h5>
 			</Link>
 		);
 	}
@@ -72,14 +72,15 @@ export default class HomeScene extends React.Component {
 
 	componentDidMount() {
 		this.getAwards();
+		this.getActivities();
+		this.getProjects();
 	}
 
 	getAwards = () => {
 		$.ajax({
-			type: 'POST',
-			url: this.props.data.host + "/awards",
+			type: 'GET',
+			url: this.props.data.host + "/awards/",
 			success: function(response) {
-				console.log(this.state);
 				this.setState({
 					awards: response
 				});
@@ -89,26 +90,29 @@ export default class HomeScene extends React.Component {
 
 	getActivities = () => {
 		$.ajax({
-			type: 'POST',
-			url: '',
+			type: 'GET',
+			url: this.props.data.host + "/activities/",
 			success: function(response) {
-				console.log(this.state);
 				this.setState({
-					activities: response.activities
+					activities: response
 				});
-			}.bind(this)
+			}.bind(this),
+			error: function(jqXHR, textStatus, errorThrown) {
+				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
+			}
 		});
 	};
 
 	getProjects = () => {
 		$.ajax({
-			type: "POST",
-			url: "https://127.0.0.1:8000/sendQuestionEmail/",
-			data: this.state,
-			timeout: 2000,
+			type: "GET",
+			url: this.props.data.host + "/projects/",
 			success: function(response) {
-				NotificationManager.success("message", "title", 5000);
-			},
+				console.log(response);
+				this.setState({
+					projects: response
+				});
+			}.bind(this),
 			error: function(jqXHR, textStatus, errorThrown) {
 				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
 			}
@@ -126,7 +130,7 @@ export default class HomeScene extends React.Component {
 					<img src={acmChapterIconWhite} alt="ACM chapter logo" className="acm-maincover_logo"/>
 					<h1 className="title">Capítulo Javeriano ACM</h1>
 				</header>
-				<section className="acm-full-section acm-aboutus">
+				<section>
 					<AboutSection icon={acmIcon} title="¿Qué es ACM?" text={queEsACM} />
 					<AboutSection icon={acmChapterIconBlue} title="¿Qué es el capítulo?" text={queEsCapituloACM} />
 				</section>

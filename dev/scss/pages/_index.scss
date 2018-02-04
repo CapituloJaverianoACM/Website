@@ -1,74 +1,80 @@
-.acm-aboutus {
-	background: linear-gradient(-45deg, white 15%, $gray-3 15%, $gray-3 85%, transparent 85%, transparent), url('../images/cover.jpg') center center / cover fixed no-repeat;
-	color: $white;
-	flex-wrap: wrap;
+.acm-aboutus_section {
+	display: grid;
 	align-items: center;
-	padding-top: $padding * 20;
-	padding-bottom: $padding * 20;
+	position: relative;
+	padding: $padding * 3 $padding;
+	color: darken($secondary-color, 80);
 
-	@include from(tablet) {
-		background: linear-gradient(-45deg, white 10%, $gray-3 10%, $gray-3 90%, transparent 90%, transparent), url('../images/cover.jpg') center center / cover fixed no-repeat;
-		padding: inherit;
+	&::before {
+		content: '';
+		position: absolute;
+		top: 15%;
+		left: 0;
+		clip-path: polygon(0 30px,100% 0,100% calc(100% - 30px),0 100%);
+		background: lighten($third-color, 8);
+		width: 100%;
+		height: 85%;
+		z-index: -1;
 	}
 
-	.acm-aboutus_section {
-		margin: $margin;
-		display: flex;
-		align-items: center;
+	@include from(600px) {
+		grid-template-columns: 200px 2fr;
+		padding: $padding * 5 $padding * 3;
 
-		@include from(tablet) {
-			width: 90%;
-			max-width: 1000px;
-			margin: $margin * 3;
+		&::before {
+			height: 88%;
+			top: 6%;
+			background: linear-gradient(90deg, lighten($third-color, 20), transparent), url('../images/cover.jpg') center center / cover fixed no-repeat;
+			box-shadow: 0 3px 35px 5px $primary-color inset;
 		}
+	}
 
-		&:nth-child(even) {
-			flex-direction: row-reverse;
+	@include from(laptop) {
+		padding: $padding * 5 $padding * 10;
+		grid-template-columns: 1fr 1fr;
+
+		&::before {
+			height: 75%;
+			top: 12.5%;
 		}
+	}
+
+	@include from(pc) {
+		padding: $padding * 5 $padding * 15;
+		grid-template-columns: 450px 600px;
+		justify-content: center;
+
 	}
 
 	.acm-aboutus_titlesection {
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-
-		&::before, &::after {
-			content: '';
-			display: block;
-			flex-grow: 1;
-			width: 100%;
-			border-bottom: 1px solid $gray-9;
-			margin: $margin auto;
-		}
+		padding-bottom: $padding;
+		border-bottom: 1px solid;
 	}
 
 	.acm-aboutus_contentsection {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		@include from(laptop) {
-			width: 50%;
+		@include from(tablet) {
+			//width: 80%;
+			//margin: 0 auto;
 		}
 	}
 
 	.acm-aboutus_picturesection {
-		width: 50%;
-		padding: $padding * 5;
-		height: auto;
-		display: none;
+		width: 100%;
+		padding: 0 $padding;
+
+		@include from(tablet) {
+			padding: $padding;
+		}
 
 		@include from(laptop) {
-			display: block;
+			padding: 0 $padding * 5;
 		}
 	}
 
 	.acm-aboutus_textsection {
 		text-align: justify;
 
-		@include from(laptop) {
+		@include from(tablet) {
 			text-align: left;
 		}
 	}
