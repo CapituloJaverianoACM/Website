@@ -57,7 +57,7 @@
 	}
 }
 
-.acm-form {
+.acms-form {
 	max-width: 600px;
 	display: flex;
 	flex-direction: column;
@@ -82,6 +82,7 @@
 			border-radius: 25px;
 			outline: 0;
 			background: $white;
+			-webkit-appearance: none;
 
 			&:valid ~ label, &:focus ~ label {
 				background: $white;
@@ -122,6 +123,55 @@
 			left: 0;
 			padding: $padding * 1.5 $padding * 3;
 			transition: all 0.1s ease;
+		}
+	}
+}
+
+.acm-form {
+	display: flex;
+	flex-direction: column;
+
+	.acm-form_field {
+		position: relative;
+		border: 1px solid $primary-color;
+		border-radius: 18px;
+		background: $white;
+		margin: $margin 0;
+		display: flex;
+
+		input, textarea, select {
+			-webkit-appearance: none;
+			padding: $padding;
+			background: $white;
+			border: 0;
+			outline: 0;
+			flex-grow: 1;
+		}
+
+		textarea {
+			resize: none;
+		}
+
+		label {
+			position: relative;
+			top: -$gutter;
+			left: $gutter * 2.5;
+			background: $primary-color;
+			color: $secondary-color;
+			padding: $padding;
+			margin-right: $margin * 3;
+			align-self: flex-start;
+
+			&::after {
+				content: '';
+				position: absolute;
+				right: 100%;
+				top: 0;
+				border-right: 5px solid $primary-color;
+				border-bottom: 5px solid $primary-color;
+				border-top: 5px solid transparent;
+				border-left: 5px solid transparent;
+			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import React from 'react';
 import { NotificationManager } from 'react-notifications';
+import { Form } from './..';
 import icon from './javeriana_icon.png';
 
 class Developer  extends React.Component {
@@ -39,6 +40,7 @@ class ContactForm extends React.Component {
 	}
 
 	handleInput = (e) => {
+		console.log("d");
 		const target = e.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
 		const name = target.name;
@@ -66,14 +68,42 @@ class ContactForm extends React.Component {
 
 	render() {
 		const {email, message} = this.state;
+		const form = [
+			{
+				type: "textarea",
+				label: "Entrada",
+				name: "message",
+				value: this.state.message,
+				isRequired: true
+			},
+			{
+				type: "select",
+				label: "Opciones",
+				name: "opt",
+				options: [
+					{ value: "Juan" },
+					{ value: "Johan" }
+				],
+				isRequired: true
+			},
+			{
+				type: "email",
+				name: "email",
+				label: "Tu nombre",
+				placeholder: "Nose",
+				value: this.state.email,
+				isRequired: true
+			}
+		];
 		return (
-			<form className="contact-form" onSubmit={this.handleInput}>
+			/*<form className="contact-form" onSubmit={this.handleInput}>
 				<textarea name="message" rows="3" placeholder="Tu mensaje, comentario ó sugerencia" className="contact-form_message" value={message} onChange={this.handleMessage} required/>
 				<section className="contact-form_section">
 					<input type="email" placeholder="Correo" name="email" className="contact-form_email" value={email} onChange={this.handleInput} required/>
 					<button className="btn btn_active contact-form_submit">Enviar</button>
 				</section>
-			</form>
+			</form>*/
+			<Form data={form} handleInput={this.handleInput}/>
 		);
 	}
 }

@@ -1,5 +1,8 @@
 {
 	"host": "http://10.192.101.21:8000",
+	"getAwards": "/awards/",
+	"getActivities": "/activities/",
+	"getProjects": "/projects/",
 	"name": "ACM Website",
 	"year": 2018,
 	"queEsACM": "La Association for Computing Machinery (ACM) es una sociedad internacional de conocimiento para la computación. Fue fundada en 1947, y es la sociedad de computación científica y educativa más grande del mundo. Es un grupo de membresía profesional sin ánimo de lucro. Cuenta con más de 100,000 miembros a partir del 2011. Su sede se encuentra en la ciudad de Nueva York. Su lema es \"Avanzar en la informática como una ciencia y profesión\".",

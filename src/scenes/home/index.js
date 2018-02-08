@@ -38,11 +38,14 @@ class Award extends React.Component {
 
 class Activity extends React.Component {
 	render() {
-		const {id, name, poster} = this.props;
+		const {id, name, poster, description} = this.props;
 		return (
 			<Link to={`/actividad/${id}`} className="acm-grid_element">
 				<img className="acm-grid_elementpicture" src={poster} alt="Project" />
-				<h5 className="acm-grid_elementtitle">{name}</h5>
+				<section className="acm-grid-elementinfo">
+					<h5 className="acm-grid_elementtitle">{name}</h5>
+					<p className="acm-grid-elementdescription">{description}</p>
+				</section>
 			</Link>
 		);
 	}
@@ -50,11 +53,14 @@ class Activity extends React.Component {
 
 class Project extends React.Component {
 	render() {
-		const {poster, id, name} = this.props;
+		const {id, name, poster, description} = this.props;
 		return (
 			<Link to={`/proyecto/${id}`} className="acm-grid_element">
-				<img className="acm-grid_elementpicture" src={poster} alt="Project" />
+			<img className="acm-grid_elementpicture" src={poster} alt="Project" />
+			<section className="acm-grid-elementinfo">
 				<h5 className="acm-grid_elementtitle">{name}</h5>
+				<p className="acm-grid-elementdescription">{description}</p>
+			</section>
 			</Link>
 		);
 	}
@@ -65,52 +71,52 @@ export default class HomeScene extends React.Component {
 		super(props);
 		this.state = {
 			awards: [],
-			activities: [],
-			projects: []
+			activities: [
+				{
+					id: 1,
+					name: "Taller Django",
+					poster: "http://www.unixstickers.com/image/cache/data/stickers/django/django.sh-600x600.png",
+					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac."
+				},
+				{
+					id: 2,
+					name: "Cumpleaños ACM",
+					poster: "https://www.acm.org/binaries/content/gallery/acm/ctas/acm-sym-branded.jpg/acm-sym-branded.jpg",
+					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac."
+				},
+				{
+					id: 3,
+					name: "Bienvenida ACM",
+					poster: "http://www.djvu.in/wp-content/uploads/2017/02/acm-desktop-1.jpg",
+					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac."
+				}
+			],
+			projects: [
+				{
+					id: 1,
+					name: "Instagram colegios",
+					poster: "https://i0.wp.com/hipertextual.com/files/2017/12/Instagram.jpg",
+					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac."
+				}
+			]
 		};
 	}
 
 	componentDidMount() {
-		this.getAwards();
-		this.getActivities();
-		this.getProjects();
+		const { host, getAwards, getActivities, getProjects } = this.props.data;
+		this.get('awards', host + getAwards);
+		this.get('activities', host + getActivities);
+		this.get('projects', host + getProjects);
 	}
 
-	getAwards = () => {
+	get = (object, url, type = 'GET') => {
+		console.log(type);
 		$.ajax({
-			type: 'GET',
-			url: this.props.data.host + "/awards/",
+			type: type,
+			url: url,
 			success: function(response) {
 				this.setState({
-					awards: response
-				});
-			}.bind(this)
-		});
-	};
-
-	getActivities = () => {
-		$.ajax({
-			type: 'GET',
-			url: this.props.data.host + "/activities/",
-			success: function(response) {
-				this.setState({
-					activities: response
-				});
-			}.bind(this),
-			error: function(jqXHR, textStatus, errorThrown) {
-				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
-			}
-		});
-	};
-
-	getProjects = () => {
-		$.ajax({
-			type: "GET",
-			url: this.props.data.host + "/projects/",
-			success: function(response) {
-				console.log(response);
-				this.setState({
-					projects: response
+					[object]: response
 				});
 			}.bind(this),
 			error: function(jqXHR, textStatus, errorThrown) {
