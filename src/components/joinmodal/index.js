@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import React from 'react';
 import { NotificationManager } from 'react-notifications';
+import { Form } from './..';
 
 export default class JoinModal extends React.Component {
 	constructor(props) {
@@ -42,44 +43,93 @@ export default class JoinModal extends React.Component {
 
 	render() {
 		const {toggleJoinModal} = this.props;
+		const { names, surnames, email, major, reason } = this.state;
+		const form = [
+			{
+				type: "text",
+				name: "names",
+				label: "Nombres",
+				placeholder: "Juan Manuel",
+				value: names,
+				required: true,
+			},
+			{
+				type: "text",
+				name: "surnames",
+				label: "Apellidos",
+				placeholder: "Sánchez Lozano",
+				value: surnames,
+				required: true,
+			},
+			{
+				type: "text",
+				name: "names",
+				label: "Correo",
+				placeholder: "tu-correo@javeriana.edu.co",
+				value: email,
+				required: true,
+				pattern: "[A-Za-z0-9_\\-.]*@javeriana.edu.co"
+			},
+			{
+				type: "select",
+				name: "major",
+				label: "Carrera",
+				placeholder: "Ingeniería",
+				value: major,
+				required: true,
+				options: [
+					{
+						value: "",
+						text: ""
+					},
+					{
+						value: "IS",
+						text: "Ingeniería de Sistemas"
+					},
+					{
+						value: "IE",
+						text: "Ingeniería Electronica"
+					},
+					{
+						value: "II",
+						text: "Ingeniería Industrial"
+					},
+					{
+						value: "IC",
+						text: "Ingeniería Civil"
+					},
+					{
+						value: "MT",
+						text: "Matemáticas"
+					},
+					{
+						value: "OT",
+						text: "Otro"
+					}
+				]
+			},
+			{
+				type: "textarea",
+				name: "reason",
+				placeholder: "¿ Cómo te enteraste de ACM ?",
+				value: reason,
+				required: true
+			},
+			{
+				type: "button",
+				value: "Enviar"
+			}
+		];
 
 		return (
 			<section className="acm-modal_frame">
 				<section className="acm-modal full-modal">
 					<span className="acm acm-times acm-modal_close" onClick={toggleJoinModal}/>
 					<section className="acm-modal_content">
-						<form className="acm-form" onSubmit={this.handleSubmit}>
-							<h2 className="sub_title acm-form_title">¿Quieres participar en maratones?</h2>
-							<article className="acm-form_item">
-								<input type="text" name="names" id="join-names" onChange={this.handleInput} required />
-								<label htmlFor="join-names">Nombres</label>
-							</article>
-							<article className="acm-form_item">
-								<input type="text" name="surnames" id="join-surnames" onChange={this.handleInput} required />
-								<label htmlFor="join-surnames">Apellidos</label>
-							</article>
-							<article className="acm-form_item">
-								<input type="email" name="email" id="join-email" pattern="[A-Za-z0-9_\-.]*@javeriana.edu.co" onChange={this.handleInput} required />
-								<label htmlFor="join-email">Correo</label>
-							</article>
-							<article className="acm-form_item">
-								<select name="major" id="join-major" onChange={this.handleInput} required >
-									<option></option>
-									<option value="IS">Ingeniería de Sistemas</option>
-									<option value="IE">Ingeniería Electronica</option>
-									<option value="II">Ingeniería Industrial</option>
-									<option value="IC">Ingeniería Civil</option>
-									<option value="MT">Matemáticas</option>
-									<option value="OT">Otro</option>
-								</select>
-								<label htmlFor="join-major">Tu carrera</label>
-							</article>
-							<article className="acm-form_item">
-								<textarea rows="5" name="reason" id="join-reason" onChange={this.handleInput} required />
-								<label htmlFor="join-reason">¿ Cómo te enteraste de ACM ?</label>
-							</article>
-							<button className="btn btn_active">Enviar</button>
-						</form>
+						<h2 className="sub_title acm-form_title center">¿Quieres hacer parte del capítulo?</h2>
+						<section className="acm-join_modal">
+							<Form data={form} handleInput={this.handleInput} handleSubmit={this.handleSubmit}/>
+						</section>
 					</section>
 				</section>
 			</section>

@@ -2,40 +2,66 @@ import React from 'react';
 
 class Item extends React.Component {
 	static defaultProps = {
-		placeholder: "",
+		placeholder: null,
+		label: null,
 		message: null,
 		value: "",
 		options: [],
-		isRequired: false
+		required: false,
+		pattern: null
+	};
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			state: ""
+		};
+	}
+
+	onEvent = (e) => {
+		console.log(e.type);
+		this.setState({
+			state: e.type
+		});
 	};
 
 	getField = () => {
-		const { type, name, placeholder, value, options, handleInput, isRequired } = this.props;
+		const { type, name, placeholder, value, options, handleInput, required, pattern } = this.props;
+		const events = {
+			onFocus: this.onEvent,
+			onBlur: this.onEvent,
+			onChange: handleInput
+		};
+		const attr = {
+			id: name,
+			name: name,
+			placeholder: placeholder,
+			defaultValue: value,
+			required: required
+		};
 		if(type === "textarea") {
-			return <textarea name={name} placeholder={placeholder} onChange={handleInput} rows="3" defaultValue={value} required={isRequired}></textarea>;
+			return <textarea rows="5" {...events} {...attr}></textarea>;
 		} else if (type === "select") {
 			return (
-				<select name={name} onChange={handleInput}>
+				<select {...events} {...attr}>
 					{options.map((option, i) => {
 						const { value, text } = option;
-						return (
-							<option key={i} value={value}>{text !== undefined ? text : value}</option>
-						);
+						return <option key={i} value={value}>{text !== undefined ? text : value}</option>;
 					})}
 				</select>
 			);
 		} else {
-			return <input type={type} name={name} placeholder={placeholder} onChange={handleInput} value={value}/>
+			return <input type={type} {...events} {...attr} pattern={pattern}/>;
 		}
 	};
 
 	render() {
-		const { label, message, handleInput } = this.props;
+		const { state } = this.state;
+		const { label, message, name} = this.props;
 		return (
-			<section className="acm-form_field">
-				<label className="acm-form_label">{label}</label>
+			<section className={`acm-form_field ${state}`}>
+				{label !== null && <label className="acm-form_label acm acm-inbox" htmlFor={name}>{label}</label>}
 				{this.getField()}
-				<label className="acm acm-inbox"/>
 				{message !== null ? <label className="acm-form_message" onSuccess={message.onSuccess} onFail={message.onFail} /> : null }
 			</section>
 		);
@@ -46,9 +72,13 @@ export default class Form extends React.Component {
 	render() {
 		const { handleSubmit, handleInput, data } = this.props;
 		return (
-			<form className="acm-form" onSubmit={handleSubmit}>
+			<form className="acm-form" onSubmit={handleSubmit} autoComplete="off">
 				{data.map((item, i) => {
-					return <Item key={i} {...item} handleInput={handleInput}/>;
+					if(item.type === "button") {
+						return <button key={i} className="acm-form-button btn btn_active">{item.value}</button>
+					} else {
+						return <Item key={i} {...item} handleInput={handleInput}/>;
+					}
 				})}
 			</form>
 		);

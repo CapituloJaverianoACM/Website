@@ -81,28 +81,37 @@
 	}
 }
 
+.footer-contact {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
 .contact-form {
+	width: 350px;
+	position: absolute;
+	bottom: calc(100% + 60px);
+	right: 0;
+	transform: translate(25%);
+	background: $white;
+	box-shadow: 0 5px 10px -2px $gray-8;
+	padding: $padding * 2 $padding;
+	border-radius: 20px;
+	display: none;
 
-	.contact-form_message {
-		width: 100%;
-		padding: $padding;
-		border-radius: $border-radius;
-		resize: none;
-		border: 0;
-	}
-	.contact-form_section {
-		display: flex;
-		align-items: center;
-		margin-top: $margin;
-	}
-	.contact-form_email {
-		flex-grow: 1;
-		padding: $padding;
-		border-radius: $border-radius;
-		border: 0;
+	@include from(laptop) {
+		transform: none;
 	}
 
-	.contact-form_submit {
-		margin-left: $margin;
+	&::before {
+		$size: 30px;
+		content: '';
+		border-top: $size solid $white;
+		border-left: $size * 0.75 solid transparent;
+		border-right: $size * 0.75 solid transparent;
+
+		position: absolute;
+		top: 100%;
+		left: calc(50% - #{$size * 0.75});
 	}
 }

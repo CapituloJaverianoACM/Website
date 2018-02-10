@@ -33,7 +33,7 @@ export default class ACMWebPage extends React.Component {
 						<main>
 							{children}
 						</main>
-						<Footer networks={data.networks} developers={data.developers} university={data.university} name={data.name} year={data.year}/>
+						<Footer data={data}/>
 					</React.Fragment>
 				}
 				<NotificationContainer/>

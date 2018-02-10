@@ -16,7 +16,7 @@ export default class ActivityScene extends React.Component {
 
 	render() {
 		const { data } = this.props;
-		const { title, date, time, place, description, image } = this.state;
+		const { title, date, time, place } = this.state;
 		return (
 			<ACMWebPage data={data} currentPage={3}>
 				<section className="maincontent acm-page">

@@ -30,7 +30,7 @@
 	}
 
 	@include from(laptop) {
-		padding: $padding * 5 $padding * 10;
+		padding: $padding * 5 $padding * 7;
 		grid-template-columns: 1fr 1fr;
 
 		&::before {
@@ -84,6 +84,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
+	align-content: center;
 	flex-wrap: wrap;
 
 	.acm-awards_award {
@@ -97,6 +98,7 @@
 
 	.acm-awards_awardpicture {
 		width: 100%;
+		max-width: 350px;
 	}
 
 	.acm-awards_awardtitle {

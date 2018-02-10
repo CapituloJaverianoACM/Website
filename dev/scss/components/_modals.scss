@@ -26,6 +26,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+			align-items: center;
 		}
 	}
 
@@ -47,6 +48,27 @@
 	.acm-modal_content {
 		background: $white;
 		flex-grow: 1;
-		padding: $padding * 3 $padding * 5;
+		padding: $padding * 3 $padding * 2;
+
+		@include from(tablet) {
+			padding: $padding * 3 $padding * 5;
+		}
+	}
+}
+
+.acm-join_modal {
+	width: 100%;
+	margin: 0 auto;
+
+	h2 {
+		text-align: center;
+	}
+
+	@include from(500px) {
+		width: 400px;
+	}
+
+	@include from(laptop) {
+		width: 600px;
 	}
 }

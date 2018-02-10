@@ -40,7 +40,6 @@ class ContactForm extends React.Component {
 	}
 
 	handleInput = (e) => {
-		console.log("d");
 		const target = e.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
 		const name = target.name;
@@ -52,65 +51,58 @@ class ContactForm extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
+		const { host, contactUs } = this.props.data;
 		$.ajax({
-			type: "POST",
-			url: "https://127.0.0.1:8000/sendQuestionEmail/",
+			type: 'POST',
+			url: host + contactUs,
 			data: this.state,
-			timeout: 2000,
 			success: function(response) {
-				NotificationManager.success("message", "title", 5000);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
-			}
+				this.setState({
+					email: "",
+					message: ""
+				});
+				NotificationManager.success("Hemos recibido tu mensaje, revisa tu correo en unos minutos!", "Pregunta recibida", 5000);
+			}.bind(this)
 		});
 	};
 
 	render() {
-		const {email, message} = this.state;
+		const { email, message } = this.state;
 		const form = [
-			{
-				type: "textarea",
-				label: "Entrada",
-				name: "message",
-				value: this.state.message,
-				isRequired: true
-			},
-			{
-				type: "select",
-				label: "Opciones",
-				name: "opt",
-				options: [
-					{ value: "Juan" },
-					{ value: "Johan" }
-				],
-				isRequired: true
-			},
 			{
 				type: "email",
 				name: "email",
-				label: "Tu nombre",
-				placeholder: "Nose",
-				value: this.state.email,
-				isRequired: true
+				label: "Correo",
+				placeholder: "tu-correo@javeriana.edu.co",
+				value: email,
+				required: true
+			},
+			{
+				type: "textarea",
+				name: "message",
+				placeholder: "Tu mensaje, comentario ó sugerencia",
+				value: message,
+				required: true
+			},
+			{
+				type: "button",
+				value: "Enviar"
 			}
-		];
+		]
 		return (
-			/*<form className="contact-form" onSubmit={this.handleInput}>
-				<textarea name="message" rows="3" placeholder="Tu mensaje, comentario ó sugerencia" className="contact-form_message" value={message} onChange={this.handleMessage} required/>
-				<section className="contact-form_section">
-					<input type="email" placeholder="Correo" name="email" className="contact-form_email" value={email} onChange={this.handleInput} required/>
-					<button className="btn btn_active contact-form_submit">Enviar</button>
-				</section>
-			</form>*/
-			<Form data={form} handleInput={this.handleInput}/>
+			<Form data={form} handleInput={this.handleInput} handleSubmit={this.handleSubmit}/>
 		);
 	}
 }
 
 export default class Footer extends React.Component {
+	openContactForm = () => {
+		$('#form_contact').fadeToggle();
+	};
+
 	render() {
-		const { networks, developers, university, name, year } = this.props;
+		const { data } = this.props;
+		const { networks, developers, university, name, year } = data;
 		return (
 			<footer className="footer">
 				<section className="footer_content">
@@ -136,8 +128,13 @@ export default class Footer extends React.Component {
 						})}
 					</section>
 					<section className="footer_section">
-						<h6 className="footer_section_title">¿Preguntas o comentarios? ¡Contactanos!</h6>
-						<ContactForm />
+						<h6 className="footer_section_title">¿Preguntas o comentarios?</h6>
+						<section className="footer-contact">
+							<button className="btn btn_active" onClick={this.openContactForm}>¡Contactanos!</button>
+							<section className="contact-form" id="form_contact">
+								<ContactForm data={data}/>
+							</section>
+						</section>
 					</section>
 				</section>
 				<section className="copyright_section">

@@ -57,87 +57,23 @@
 	}
 }
 
-.acms-form {
-	max-width: 600px;
-	display: flex;
-	flex-direction: column;
-	margin: 0 auto;
-	padding: $padding * 2 0;
-
-	.acm-form_title {
-		text-align: center;
-		padding-bottom: $padding * 3;
-		border-bottom: 1px solid $primary-color;
-		margin-bottom: $margin * 3;
-	}
-
-	.acm-form_item {
-		position: relative;
-		margin-bottom: $margin * 3;
-
-		input, select, textarea {
-			width: 100%;
-			padding: $padding * 1.5 $padding * 3;
-			border: 1px solid $gray-9;
-			border-radius: 25px;
-			outline: 0;
-			background: $white;
-			-webkit-appearance: none;
-
-			&:valid ~ label, &:focus ~ label {
-				background: $white;
-				padding: 0 $padding * 0.5;
-				font-size: 0.9rem;
-				transform: translate($padding * 2.5, -50%);
-			}
-
-			&:focus {
-				color: $active;
-				border-color: $active;
-
-				& ~ label {
-					color: $active;
-				}
-			}
-
-			&:valid {
-				color: $success;
-				border-color: $success;
-
-				& ~ label {
-					color: $success;
-				}
-			}
-		}
-
-		input, select {
-		}
-
-		textarea {
-			resize: none;
-		}
-
-		label {
-			position: absolute;
-			top: 0;
-			left: 0;
-			padding: $padding * 1.5 $padding * 3;
-			transition: all 0.1s ease;
-		}
-	}
-}
-
 .acm-form {
 	display: flex;
 	flex-direction: column;
+	color: $gray-5;
 
 	.acm-form_field {
 		position: relative;
-		border: 1px solid $primary-color;
+		border: 1px solid;
 		border-radius: 18px;
 		background: $white;
 		margin: $margin 0;
 		display: flex;
+		overflow: hidden;
+
+		&.focus {
+			color: $primary-color;
+		}
 
 		input, textarea, select {
 			-webkit-appearance: none;
@@ -146,32 +82,31 @@
 			border: 0;
 			outline: 0;
 			flex-grow: 1;
+			color: inherit;
 		}
 
 		textarea {
 			resize: none;
 		}
 
-		label {
-			position: relative;
-			top: -$gutter;
-			left: $gutter * 2.5;
-			background: $primary-color;
-			color: $secondary-color;
+		.acm-form_label {
+			border-radius: 50px;
+			border-right: 1px solid;
 			padding: $padding;
-			margin-right: $margin * 3;
 			align-self: flex-start;
 
-			&::after {
-				content: '';
-				position: absolute;
-				right: 100%;
-				top: 0;
-				border-right: 5px solid $primary-color;
-				border-bottom: 5px solid $primary-color;
-				border-top: 5px solid transparent;
-				border-left: 5px solid transparent;
+			&::before {
+				margin-right: $margin;
+				display: none;
+
+				@include from(tablet) {
+					display: inline;
+				}
 			}
 		}
+	}
+
+	.acm-form-button {
+		border-radius: 50px;
 	}
 }

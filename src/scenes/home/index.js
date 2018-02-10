@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { NotificationManager } from 'react-notifications';
 import { ACMWebPage } from '../../components';
 import acmIcon from './acm_icon.png';
 import acmChapterIconBlue from './icon_blue.svg';
@@ -27,7 +26,7 @@ class Award extends React.Component {
 		const {picture, title, date, description} = this.props;
 		return (
 			<article className="acm-awards_award item">
-				<img className="acm-awards_awardpicture" src={picture} alt="Award" />
+				<img className="acm-awards_awardpicture" src={`data:image/png;base64,${picture}`} alt="Award" />
 				<h4 className="acm-awards_awardtitle">{title}</h4>
 				<p className="acm-awards_awardyear">{date}</p>
 				<p className="acm-awards_awarddescription">{description}</p>
@@ -41,7 +40,7 @@ class Activity extends React.Component {
 		const {id, name, poster, description} = this.props;
 		return (
 			<Link to={`/actividad/${id}`} className="acm-grid_element">
-				<img className="acm-grid_elementpicture" src={poster} alt="Project" />
+				<img className="acm-grid_elementpicture" src={`data:image/png;base64,${poster}`} alt="Project" />
 				<section className="acm-grid-elementinfo">
 					<h5 className="acm-grid_elementtitle">{name}</h5>
 					<p className="acm-grid-elementdescription">{description}</p>
@@ -56,7 +55,7 @@ class Project extends React.Component {
 		const {id, name, poster, description} = this.props;
 		return (
 			<Link to={`/proyecto/${id}`} className="acm-grid_element">
-			<img className="acm-grid_elementpicture" src={poster} alt="Project" />
+			<img className="acm-grid_elementpicture" src={`data:image/png;base64,${poster}`} alt="Project" />
 			<section className="acm-grid-elementinfo">
 				<h5 className="acm-grid_elementtitle">{name}</h5>
 				<p className="acm-grid-elementdescription">{description}</p>
@@ -71,34 +70,8 @@ export default class HomeScene extends React.Component {
 		super(props);
 		this.state = {
 			awards: [],
-			activities: [
-				{
-					id: 1,
-					name: "Taller Django",
-					poster: "http://www.unixstickers.com/image/cache/data/stickers/django/django.sh-600x600.png",
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac."
-				},
-				{
-					id: 2,
-					name: "Cumpleaños ACM",
-					poster: "https://www.acm.org/binaries/content/gallery/acm/ctas/acm-sym-branded.jpg/acm-sym-branded.jpg",
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac."
-				},
-				{
-					id: 3,
-					name: "Bienvenida ACM",
-					poster: "http://www.djvu.in/wp-content/uploads/2017/02/acm-desktop-1.jpg",
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac."
-				}
-			],
-			projects: [
-				{
-					id: 1,
-					name: "Instagram colegios",
-					poster: "https://i0.wp.com/hipertextual.com/files/2017/12/Instagram.jpg",
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac."
-				}
-			]
+			activities: [],
+			projects: []
 		};
 	}
 
@@ -110,7 +83,6 @@ export default class HomeScene extends React.Component {
 	}
 
 	get = (object, url, type = 'GET') => {
-		console.log(type);
 		$.ajax({
 			type: type,
 			url: url,
@@ -118,10 +90,7 @@ export default class HomeScene extends React.Component {
 				this.setState({
 					[object]: response
 				});
-			}.bind(this),
-			error: function(jqXHR, textStatus, errorThrown) {
-				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
-			}
+			}.bind(this)
 		});
 	};
 
