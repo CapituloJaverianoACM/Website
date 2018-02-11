@@ -85,20 +85,8 @@
 	}
 }
 
-.acm-teams {
-	display: flex;
-	justify-content: center;
-	align-items: baseline;
-	flex-wrap: wrap;
-
-	.acm-teams_team {
-		margin: 0 $margin;
-
-		@include from(tablet) {
-			width: 350px;
-			margin: $margin * 3 $margin * 5;
-		}
-	}
+.acm-teams_team {
+	width: 100%;
 
 	.acm-teams_teampicture {
 		width: 80%;

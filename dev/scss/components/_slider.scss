@@ -1,102 +1,54 @@
 .slider {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	overflow: hidden;
+	margin: 0 $margin;
 
-	.slider-content {
-		width: 100%;
+	#{&}-content {
+		display: flex;
 		position: relative;
+		transition: all 0.2s ease-out;
+		align-items: stretch;
 	}
 
-	.slider-slides {
-		//outline: 1px solid;
-	}
-
-	.slider-slide {
+	#{&}-slide {
+		flex-shrink: 0;
 		width: 100%;
-		display: none;
-
-		&.visible {
-			animation: intro 1s ease;
-			display: block;
-		}
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
 	}
 
-	.slider-dots {
+	#{&}-item {
+		flex-grow: 1;
 		display: flex;
+		flex-shrink: 0;
+		flex-direction: column;
 		justify-content: center;
-		flex-wrap: wrap;
-		margin: $margin * 2;
-	}
-
-	.slider-dot {
-
-		&::before {
-			content: '';
-			display: block;
-			border-radius: 50%;
-			width: 15px;
-			height: 15px;
-			background: #aaa;
-		}
-
-		&.current::before {
-			background: #333;
-		}
-
-		&:not(.current):hover::before {
-			box-shadow: 0 0 0 5px #ccc;
-			background: #888;
-		}
-	}
-
-	.slider-precaret, .slider-postcaret {
-		position: absolute;
-		height: 100%;
-		top: 0;
-		z-index: 10;
-		display: flex;
 		align-items: center;
+	}
+
+	#{&}-dots {
+		position: relative;
+		display: flex;
 		justify-content: center;
-		opacity: 0;
-		transition: all 0.3s ease;
+	}
+
+	#{&}-dot {
+		width: 13px;
+		height: 13px;
+		background: $dot-color;
+		border-radius: 50%;
+		margin: $margin;
+		transition: all 0.15s ease;
 		cursor: pointer;
 
-		&::before {
-			text-shadow: 0 0 1px white;
+		&.selected {
+			background: $dot-selected-color;
 		}
-	}
 
-	.slider-precaret {
-		left: 0;
-	}
-
-	.slider-postcaret {
-		right: 0;
-	}
-
-	.slider-dot::before, .slider-precaret::before, .slider-postcaret::before {
-		font-family: 'fontawesome';
-		margin: $margin / 2;
-		transition: all 0.3s ease;
-	}
-
-	.slider-precaret::before, .slider-postcaret::before {
-		font-size: 2rem;
-		margin: $margin * 2;
-	}
-
-	&:hover {
-		.slider-precaret, .slider-postcaret {
-			opacity: 1;
+		&:hover {
+			box-shadow: 0 0 0 3px $dot-selected-color;
 		}
-	}
-
-	.slider-precaret::before {
-		content: '\f0d9';
-	}
-
-	.slider-postcaret::before {
-		content: '\f0da';
 	}
 }

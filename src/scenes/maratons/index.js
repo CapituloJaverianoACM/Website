@@ -1,13 +1,13 @@
 import $ from 'jquery';
 import React from 'react';
 import { NotificationManager } from 'react-notifications';
-import { ACMWebPage } from '../../components';
+import { ACMWebPage, Slider } from '../../components';
 
 class Team extends React.Component {
 	render() {
 		const {picture, name, members} = this.props;
 		return (
-			<article className="acm-teams_team item">
+			<article className="acm-teams_team">
 				<section className="acm-teams_teampicture">
 					<img src={picture} alt="Equipo"/>
 				</section>
@@ -50,6 +50,47 @@ export default class MaratonsScene extends React.Component {
 						"Miembro 2",
 						"Miembro 3"
 					]
+				},
+				{
+					picture: "https://www.dsaa.org/get/files/image/galleries/memberIcon-0001.png",
+					name: "Equipo 2",
+					members: [
+						"Miembro 1",
+						"Miembro 2",
+						"Miembro 3"
+					]
+				},{
+					picture: "https://www.dsaa.org/get/files/image/galleries/memberIcon-0001.png",
+					name: "Equipo 3",
+					members: [
+						"Miembro 1",
+						"Miembro 2",
+						"Miembro 3"
+					]
+				},{
+					picture: "https://www.dsaa.org/get/files/image/galleries/memberIcon-0001.png",
+					name: "Equipo 4",
+					members: [
+						"Miembro 1",
+						"Miembro 2",
+						"Miembro 3"
+					]
+				},{
+					picture: "https://www.dsaa.org/get/files/image/galleries/memberIcon-0001.png",
+					name: "Equipo 5",
+					members: [
+						"Miembro 1",
+						"Miembro 2",
+						"Miembro 3"
+					]
+				},{
+					picture: "https://www.dsaa.org/get/files/image/galleries/memberIcon-0001.png",
+					name: "Equipo 6",
+					members: [
+						"Miembro 1",
+						"Miembro 2",
+						"Miembro 3"
+					]
 				}
 			]
 		};
@@ -74,6 +115,27 @@ export default class MaratonsScene extends React.Component {
 		const { data } = this.props;
 		const { teams } = this.state;
 		const { trainings } = data;
+		const SlideSettings = {
+			count: 1,
+			autoPlay: false,
+			timeToSlide: 2500,
+			showDots: true,
+			pauseOnMouseOver: false,
+			responsive: [
+				{
+					min_width: 500,
+					count: 2
+				},
+				{
+					min_width: 1200,
+					count: 3
+				},
+				{
+					min_width: 1500,
+					count: 4
+				}
+			]
+		}
 		return (
 			<ACMWebPage data={data} currentPage={2}>
 				<header className="acm-cover">
@@ -99,11 +161,11 @@ export default class MaratonsScene extends React.Component {
 				</section>
 				<section className="acm-section">
 					<h1 className="sub_title acm-section_title">Equipos maratonistas</h1>
-					<section className="acm-teams">
+					<Slider {...SlideSettings}>
 						{teams.map((team, i) => {
 							return <Team key={i} {...team}/>
 						})}
-					</section>
+					</Slider>
 				</section>
 			</ACMWebPage>
 		);

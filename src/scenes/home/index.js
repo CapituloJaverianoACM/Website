@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ACMWebPage } from '../../components';
+import { ACMWebPage, Slider } from '../../components';
 import acmIcon from './acm_icon.png';
 import acmChapterIconBlue from './icon_blue.svg';
 import acmChapterIconWhite from './icon_white.svg';
@@ -98,6 +98,27 @@ export default class HomeScene extends React.Component {
 		const {data} = this.props;
 		const {queEsACM, queEsCapituloACM} = data;
 		const {awards, activities, projects} = this.state;
+		const SlideSettings = {
+			count: 1,
+			autoPlay: false,
+			timeToSlide: 2500,
+			showDots: true,
+			pauseOnMouseOver: false,
+			responsive: [
+				{
+					min_width: 900,
+					count: 2
+				},
+				{
+					min_width: 1200,
+					count: 3
+				},
+				{
+					min_width: 1500,
+					count: 4
+				}
+			]
+		}
 
 		return (
 			<ACMWebPage data={data} currentPage={0}>
@@ -112,11 +133,11 @@ export default class HomeScene extends React.Component {
 				{awards.length > 0 &&
 					<section className="acm-full-section">
 						<h1 className="sub_title acm-section_title">¿Qué hemos ganado?</h1>
-						<section className="acm-awards">
+						<Slider {...SlideSettings}>
 							{awards.map((award, i) => {
 								return <Award key={i} {...award}/>;
 							})}
-						</section>
+						</Slider>
 					</section>
 				}
 				{activities.length > 0 &&
