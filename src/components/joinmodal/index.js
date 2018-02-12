@@ -7,8 +7,8 @@ export default class JoinModal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			names: "",
-			surnames: "",
+			name: "",
+			surname: "",
 			email: "",
 			major: "",
 			reason: ""
@@ -27,17 +27,25 @@ export default class JoinModal extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
+		const { host, joinUs } = this.props.data;
 		$.ajax({
-			type: "POST",
-			url: "https://127.0.0.1:8000/sendQuestionEmail/",
+			type: 'POST',
+			url: host + joinUs,
 			data: this.state,
-			timeout: 2000,
 			success: function(response) {
-				NotificationManager.success("message", "title", 5000);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				NotificationManager.error("Parece que algo salio mal", textStatus, 5000);
-			}
+				NotificationManager.success("Hemos recibido tu solicitud, revisa tu correo en unos minutos!", "Pregunta recibida", 5000);
+				this.props.toggleJoinModal();
+			}.bind(this),
+			error: function(response) {
+				let message = "";
+				if(response.status === 500) {
+					message = "¡UPS! Tuvimos un problema interno, dejanos arreglarlo y vuelve a intentarlo";
+				} else if(response.status === 400) {
+					message = "Parece que este correo ya se encuentra en uso";
+				}
+				NotificationManager.error(message, response.status, 5000);
+				this.props.toggleJoinModal();
+			}.bind(this)
 		});
 	}
 
@@ -47,7 +55,7 @@ export default class JoinModal extends React.Component {
 		const form = [
 			{
 				type: "text",
-				name: "names",
+				name: "name",
 				label: "Nombres",
 				placeholder: "Juan Manuel",
 				value: names,
@@ -55,7 +63,7 @@ export default class JoinModal extends React.Component {
 			},
 			{
 				type: "text",
-				name: "surnames",
+				name: "surname",
 				label: "Apellidos",
 				placeholder: "Sánchez Lozano",
 				value: surnames,
@@ -63,7 +71,7 @@ export default class JoinModal extends React.Component {
 			},
 			{
 				type: "text",
-				name: "names",
+				name: "email",
 				label: "Correo",
 				placeholder: "tu-correo@javeriana.edu.co",
 				value: email,

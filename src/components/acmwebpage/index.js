@@ -15,7 +15,6 @@ export default class ACMWebPage extends React.Component {
 	}
 
 	toggleJoinModal = (e) => {
-		e.preventDefault();
 		this.setState((prevState) => ({
 			joinModal: !prevState.joinModal
 		}));
@@ -26,7 +25,7 @@ export default class ACMWebPage extends React.Component {
 		const {data, children, currentPage} = this.props;
 		return (
 			<React.Fragment>
-				{ joinModal && <JoinModal toggleJoinModal={this.toggleJoinModal}/> }
+				{ joinModal && <JoinModal data={data} toggleJoinModal={this.toggleJoinModal}/> }
 				{ !joinModal &&
 					<React.Fragment>
 						<Navbar currentPage={currentPage} toggleJoinModal={this.toggleJoinModal}/>
