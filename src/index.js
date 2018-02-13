@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { HomeScene, StaffScene, MaratonsScene, ActivitiesScene, ActivityScene, ProjectsScene, ProjectScene, TutorialsScene, TutorialScene } from './scenes';
 import './static/css/styles.css';
 import 'react-notifications/lib/notifications.css';
+import 'highlight.js/styles/github.css';
 import data from './data.json';
 
 class App extends React.Component {

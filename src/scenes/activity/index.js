@@ -1,20 +1,47 @@
 import $ from 'jquery';
 import React from 'react';
+import Remarkable from 'remarkable';
+import hljs from 'highlight.js';
 import { ACMWebPage } from '../../components';
+
+hljs.initHighlightingOnLoad();
+
+var md = new Remarkable('full', {
+	html: true,
+	xhtmlOut: true,
+	breaks: true,
+	langPrefix: '',
+	linkify: true,
+	linkTarget: '_blank',
+
+	// Enable some language-neutral replacements + quotes beautification
+	typographer: true,
+
+	// Double + single quotes replacement pairs, when typographer enabled,
+	// and smartquotes on. Set doubles to '«»' for Russian, '„“' for German.
+	quotes: '“”‘’',
+
+	// Highlighter function. Should return escaped HTML,
+	// or '' if input not changed
+	highlight: function (str, lang) {
+		if (lang && hljs.getLanguage(lang)) {
+			try {
+				return hljs.highlight(lang, str).value;
+			} catch (__) {}
+		}
+
+		try {
+			return hljs.highlightAuto(str).value;
+		} catch (__) {}
+
+		return ''; // use external default escaping
+	}
+});
 
 export default class ActivityScene extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			id: 1,
-			name: "Taller Django",
-			date: "08 febrero del 2018",
-			time: "6:00 pm - 8:00 pm",
-			place: "Sala de bases de datos",
-			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac.",
-			poster: "http://www.techspire.net/wp-content/uploads/2016/11/python-django-logo.jpg",
-			information: ""
-		};
+		this.state = {};
 	}
 
 	componentDidMount() {
@@ -30,6 +57,10 @@ export default class ActivityScene extends React.Component {
 				this.setState(response);
 			}.bind(this)
 		});
+	};
+
+	renderMarkdown = (content) => {
+		return { __html: md.render(content) };
 	};
 
 	render() {
@@ -50,9 +81,7 @@ export default class ActivityScene extends React.Component {
 						</section>
 					</section>
 					<section className="acm-page-content">
-						<section>
-							{information}
-						</section>
+						<section className="content" dangerouslySetInnerHTML={this.renderMarkdown(information)} />
 					</section>
 				</section>
 			</ACMWebPage>
