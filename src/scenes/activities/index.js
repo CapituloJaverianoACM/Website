@@ -1,15 +1,16 @@
+import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ACMWebPage } from '../../components';
 
 class Activity extends React.Component {
 	render() {
-		const {id, title, date, picture, description} = this.props;
+		const {id, name, poster, description, date} = this.props;
 		return (
 			<Link className="acm-card" to={`/actividad/${id}`}>
-				<h6 className="acm-card_title">{title}</h6>
+				<h6 className="acm-card_title">{name}</h6>
 				<span className="acm-card_date">{date}</span>
-				<img className="acm-card_image" src={picture} alt="Activity" />
+				<img className="acm-card_image" src={`data:image/png;base64,${poster}`} alt="Activity" />
 				<p className="acm-card_description">{description}</p>
 			</Link>
 		);
@@ -41,6 +42,23 @@ export default class ActivitiesScene extends React.Component {
 		console.log(this.state);
 	};
 
+	componentWillMount() {
+		this.getActivities();
+	}
+
+	getActivities = () => {
+		const { host, getActivities } = this.props.data;
+		$.ajax({
+			type: 'GET',
+			url: host + getActivities,
+			success: function(response) {
+				this.setState({
+					'activities': response
+				});
+			}.bind(this)
+		});
+	};
+
 	render() {
 		const { data } = this.props;
 		const { activities, search, type } = this.state;
@@ -65,11 +83,13 @@ export default class ActivitiesScene extends React.Component {
 							<label htmlFor="finisehd">Pasados</label>
 						</article>
 					</section>
-					<button className="btn btn_active">Buscar</button>
 				</form>
 				<section className="acm-grid">
 					{activities.map((activity, i) => {
-						return <Activity key={i} {...activity} />
+						if(activity.name.toLowerCase().includes(search.toLowerCase())) {
+							return <Activity key={i} {...activity} />
+						}
+						return null;
 					})}
 				</section>
 			</ACMWebPage>

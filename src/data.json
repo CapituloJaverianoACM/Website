@@ -4,6 +4,7 @@
 	"getActivities": "/activities/",
 	"getActivity": "/activity/",
 	"getProjects": "/projects/",
+	"getTutorials": "/tutorials/",
 	"contactUs": "/contactus/",
 	"joinUs": "/joinus/",
 	"getStaffMembers": "/members?isStaff=True",

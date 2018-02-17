@@ -1,14 +1,15 @@
+import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ACMWebPage } from '../../components';
 
 class Tutorial extends React.Component {
 	render() {
-		const {id, title, picture, description} = this.props;
+		const {id, name, picture, description} = this.props;
 		return (
 			<Link className="acm-card" to={`/actividad/${id}`}>
-				<h6 className="acm-card_title">{title}</h6>
-				<img className="acm-card_image" src={picture} alt="Tutorial" />
+				<h6 className="acm-card_title">{name}</h6>
+				<img className="acm-card_image" src={`data:image/png;base64,${picture}`} alt="Tutorial" />
 				<p className="acm-card_description">{description}</p>
 			</Link>
 		);
@@ -39,6 +40,23 @@ export default class TutorialsScene extends React.Component {
 		console.log(this.state);
 	};
 
+	componentWillMount() {
+		this.getTutorials();
+	}
+
+	getTutorials = () => {
+		const { host, getTutorials } = this.props.data;
+		$.ajax({
+			type: 'GET',
+			url: host + getTutorials,
+			success: function(response) {
+				this.setState({
+					'tutorials': response
+				});
+			}.bind(this)
+		});
+	};
+
 	render() {
 		const { data } = this.props;
 		const { tutorials, search } = this.state;
@@ -53,7 +71,10 @@ export default class TutorialsScene extends React.Component {
 				</form>
 				<section className="acm-grid">
 					{tutorials.map((tutorial, i) => {
-						return <Tutorial key={i} {...tutorial} />
+						if(tutorial.name.toLowerCase().includes(search.toLowerCase())) {
+							return <Tutorial key={i} {...tutorial} />
+						}
+						return null;
 					})}
 				</section>
 			</ACMWebPage>

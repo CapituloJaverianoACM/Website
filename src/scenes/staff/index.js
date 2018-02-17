@@ -4,13 +4,13 @@ import { ACMWebPage } from '../../components';
 
 class Member extends React.Component {
 	render() {
-		const {picture, names, surnames, position, description, checked} = this.props;
+		const {picture, name, surname, position, description, checked} = this.props;
 		return (
 			<section className="acm-staff_member">
 				<input className="acm-staff_check" type="radio" name="member" defaultChecked={checked}/>
 				<article className="acm-staff_imagesection">
 					<img className="acm-staff_image" src={`data:image/png;base64,${picture}`} alt="Member" />
-					<h6 className="acm-staff_name">{names} {surnames}</h6>
+					<h6 className="acm-staff_name">{name} {surname}</h6>
 				</article>
 				<article className="acm-staff_infosection">
 					<h5 className="acm-staff_rol">{position}</h5>

@@ -50,7 +50,7 @@ export default class JoinModal extends React.Component {
 	}
 
 	render() {
-		const {toggleJoinModal} = this.props;
+		const { toggleJoinModal, id } = this.props;
 		const { names, surnames, email, major, reason } = this.state;
 		const form = [
 			{
@@ -130,7 +130,7 @@ export default class JoinModal extends React.Component {
 		];
 
 		return (
-			<section className="acm-modal_frame">
+			<section className="acm-modal_frame" id={id}>
 				<section className="acm-modal full-modal">
 					<span className="acm acm-times acm-modal_close" onClick={toggleJoinModal}/>
 					<section className="acm-modal_content">

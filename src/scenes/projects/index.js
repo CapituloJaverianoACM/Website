@@ -1,14 +1,15 @@
+import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ACMWebPage } from '../../components';
 
 class Project extends React.Component {
 	render() {
-		const {id, title, picture, description} = this.props;
+		const {id, name, poster, description} = this.props;
 		return (
 			<Link className="acm-card" to={`/proyecto/${id}`}>
-				<h6 className="acm-card_title">{title}</h6>
-				<img className="acm-card_image" src={picture} alt="Project" />
+				<h6 className="acm-card_title">{name}</h6>
+				<img className="acm-card_image" src={`data:image/png;base64,${poster}`} alt="Project" />
 				<p className="acm-card_description">{description}</p>
 			</Link>
 		);
@@ -40,6 +41,23 @@ export default class ProjectsScene extends React.Component {
 		console.log(this.state);
 	};
 
+	componentWillMount() {
+		this.getProjects();
+	}
+
+	getProjects = () => {
+		const { host, getProjects } = this.props.data;
+		$.ajax({
+			type: 'GET',
+			url: host + getProjects,
+			success: function(response) {
+				this.setState({
+					'projects': response
+				});
+			}.bind(this)
+		});
+	};
+
 	render() {
 		const { data } = this.props;
 		const { projects, search, type } = this.state;
@@ -68,7 +86,10 @@ export default class ProjectsScene extends React.Component {
 				</form>
 				<section className="acm-grid">
 					{projects.map((project, i) => {
-						return <Project key={i} {...project} />
+						if(project.name.toLowerCase().includes(search.toLowerCase())) {
+							return <Project key={i} {...project} />
+						}
+						return null;
 					})}
 				</section>
 			</ACMWebPage>

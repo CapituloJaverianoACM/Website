@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { JoinModal } from './..';
 import icon from './icon_blue.svg';
 
 class NavbarItem extends React.Component {
@@ -62,20 +63,27 @@ export default class Navbar extends React.Component {
 		$('#acm-navbar').slideToggle();
 	};
 
+	toggleJoinModal = (e) => {
+		$('#join-modal').fadeToggle();
+	};
+
 	render() {
 		const { links } = this.state;
-		const { currentPage, toggleJoinModal } = this.props;
+		const { currentPage, data } = this.props;
 		return (
-			<nav className="acm-navbar">
-				<img src={icon} alt="ACM logo" className="acm-navbar_logo"/>
-				<ul className="acm-navbar_menu" id="acm-navbar">
-					{links.map((link, i) => {
-						return <NavbarItem key={i} active={currentPage === i} {...link} />
-					})}
-					<NavbarModalTrigger text="¡Unete!" toggleJoinModal={toggleJoinModal}/>
-				</ul>
-				<span className="acm-navbar_trigger acm acm-bars" id="navbarTrigger" onClick={this.handleNavbar} />
-			</nav>
+			<React.Fragment>
+				<nav className="acm-navbar">
+					<img src={icon} alt="ACM logo" className="acm-navbar_logo"/>
+					<ul className="acm-navbar_menu" id="acm-navbar">
+						{links.map((link, i) => {
+							return <NavbarItem key={i} active={currentPage === i} {...link} />
+						})}
+						<NavbarModalTrigger text="¡Unete!" toggleJoinModal={this.toggleJoinModal}/>
+					</ul>
+					<span className="acm-navbar_trigger acm acm-bars" id="navbarTrigger" onClick={this.handleNavbar} />
+				</nav>
+				<JoinModal data={data} id="join-modal" toggleJoinModal={this.toggleJoinModal}/>
+			</React.Fragment>
 		);
 	}
 }
