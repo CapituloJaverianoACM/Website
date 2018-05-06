@@ -66,13 +66,56 @@
 			"title": "Juniors",
 			"day": "Sabados",
 			"time": "9:00 am - 1:00 pm",
-			"place": "Sala bases de datos"
+			"place": "Sala bases de datos",
+			"topics": [
+				"Primalidad",
+        "cin",
+        "scanf",
+        "printf",
+        "getline",
+        "Merge",
+        "Sobrecarga de operadores",
+        "Función comparadora",
+        "Priority queue",
+        "Map",
+        "Set",
+        "Busqueda binaria",
+        "Upper bound",
+        "Lower bound",
+        "Backtracking",
+        "Recursión",
+        "Programación dinamica (DP)",
+        "Disjoint Set",
+        "Segment tree",
+        "Grafos",
+        "Transversals",
+        "TOPO",
+        "MST",
+        "SSSP"
+			]
 		},
 		{
 			"title": "Seniors",
 			"day": "Sabados",
 			"time": "1:00 pm - 6:00 pm",
-			"place": "Sala bases de datos"
+			"place": "Sala bases de datos",
+      "topics": [
+        "Trie",
+        "SuffixTrie",
+        "KMP",
+        "Hash",
+        "Geometria",
+        "Puentes y puntos de articulación",
+        "Flujo",
+        "Suffix Array",
+        "Función Z",
+        "Aho Corasik",
+        "Segment tree avanzado",
+        "Pesistent",
+        "Treap",
+        "Programación dinamica avanzada",
+        "FFT"
+      ]
 		}
 	]
 }

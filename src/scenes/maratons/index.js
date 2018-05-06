@@ -20,18 +20,51 @@ class Team extends React.Component {
 	}
 }
 
-class Train extends React.Component {
+class Topics extends React.Component {
 	render() {
-		const {title, day, time, place} = this.props;
+		const { children, open, handleTopic, title } = this.props;
+		return (
+			<dialog open={open} className="acm-topics">
+				<h1 className="acm-topics-title">{title}</h1>
+				<span className="acm-topics-close acm acm-times" onClick={handleTopic}></span>
+				<section className="acm-topics-container">
+					{children.map((child, i) => {
+						return <span key={i} className="acm-topic">{child}</span>
+					})}
+				</section>
+			</dialog>
+		);
+	}
+}
+
+class Train extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			open: false
+		};
+	}
+
+	handleTopic = (e) => {
+		e.preventDefault();
+		this.setState((prevState) => ({
+			open: !prevState.open
+		}));
+	};
+
+	render() {
+		const {title, day, time, place, topics} = this.props;
+		const { open } = this.state;
 		return (
 			<article className="acm-trains_train">
+				<Topics open={open} title={title} handleTopic={this.handleTopic}>{topics}</Topics>
 				<h4 className="acm-trains_traintitle">{title}</h4>
 				<section className="acm-trains_trainfinfo">
 					<p>{day}</p>
 					<p>{time}</p>
 					<p>{place}</p>
 				</section>
-				<button className="btn btn_active acm-modal_trigger">Ver temas</button>
+				<button className="btn btn_active acm-modal_trigger" onClick={this.handleTopic}>Ver temas</button>
 			</article>
 		);
 	}

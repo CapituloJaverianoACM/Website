@@ -5,6 +5,7 @@ import { Navbar, Footer } from './..';
 export default class ACMWebPage extends React.Component {
 	componentDidMount() {
 		window.scrollTo(0, 0);
+		console.clear();
 	}
 
 	render() {

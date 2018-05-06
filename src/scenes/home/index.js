@@ -135,6 +135,7 @@ export default class HomeScene extends React.Component {
 						<h1 className="sub_title acm-section_title">¿Qué hemos ganado?</h1>
 						<Slider {...SlideSettings}>
 							{awards.map((award, i) => {
+
 								return <Award key={i} {...award}/>;
 							})}
 						</Slider>

@@ -1,0 +1,58 @@
+.acm-topics {
+	padding: $padding * 5;
+	animation:  0.5s intro ease;
+	background: $third-color;
+	color: $white;
+	box-shadow: 0 5px 15px -5px $gray-5;
+	z-index: z-index(tooltip);
+
+	@include from(tablet) {
+		width: 80%;
+	}
+
+	.acm-topics-title {
+		display: flex;
+		align-items: center;
+
+		&::before, &::after {
+			content: '';
+			border-bottom: 2px solid;
+			flex-grow: 1;
+		}
+	}
+
+	.acm-topics-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.acm-topic {
+		margin: $margin / 2;
+		text-align: center;
+
+		&:nth-child(2n + 3) {
+			font-size: 1.3em;
+		}
+
+		&:nth-child(2n + 5) {
+			font-size: 1.6em;
+		}
+	}
+
+	.acm-topics-close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 2rem;
+		margin: $margin * 2;
+		cursor: pointer;
+		transition: all 0.1s ease;
+		z-index: 10;
+
+		&:hover {
+			transform: scale(1.2);
+		}
+	}
+}
