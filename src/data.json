@@ -1,5 +1,5 @@
 {
-	"host": "https://webapi-juanpablorn30.c9users.io",
+	"host": "http://localhost:8000",
 	"getAwards": "/awards/",
 	"getActivities": "/activities/",
 	"getActivity": "/activity/",
