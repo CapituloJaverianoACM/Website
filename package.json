@@ -31,7 +31,6 @@
     "gulp-todo": "^5.4.0",
     "vinyl-paths": "^2.1.0"
   },
-  "homepage": "https://github.com/CapituloJaverianoACM/Website#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CapituloJaverianoACM/Website.git"
