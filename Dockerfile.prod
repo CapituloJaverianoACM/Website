@@ -1,11 +1,14 @@
-FROM node as builder
+FROM node:15.1-alpine as builder
 RUN mkdir /react_server
 WORKDIR /react_server
 ADD . /react_server/
 
-RUN npm install yarn
-RUN yarn install
-RUN yarn build
+RUN apk update
+RUN apk add --no-cache --virtual .build-deps ca-certificates wget python make g++ && \
+yarn install --prod=false --no-cache && \
+apk del .build-deps
+RUN yarn install --prod=false
+RUN yarn build --prod=false
 
 # Copy built app into nginx container
 FROM nginx
