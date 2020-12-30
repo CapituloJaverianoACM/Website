@@ -9,9 +9,9 @@
     "joinUs": "/information/joinus/",
     "getStaffMembers": "/people/members",
 	"name": "ACM Website",
-	"year": 2018,
+	"year": 2020,
 	"queEsACM": "La Association for Computing Machinery (ACM) es una sociedad internacional de conocimiento para la computación. Fue fundada en 1947, y es la sociedad de computación científica y educativa más grande del mundo. Es un grupo de membresía profesional sin ánimo de lucro. Cuenta con más de 100,000 miembros a partir del 2011. Su sede se encuentra en la ciudad de Nueva York. Su lema es \"Avanzar en la informática como una ciencia y profesión\".",
-	"queEsCapituloACM": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor sodales ex ut blandit. Nulla interdum viverra erat, vel convallis nisi interdum ac. Donec eros justo, laoreet ac leo ac, molestie eleifend turpis. Pellentesque sagittis mi rhoncus, laoreet erat quis, condimentum leo. Nullam non eros finibus, luctus nibh in, lobortis.",
+	"queEsCapituloACM": "Somos un grupo estudiantil de la Facultad Ingeniería de la Pontificia Universidad Javeriana, con una trayectoria de 10 años. Estamos formalizados en la Vicerrectoría del Medio Universitario, desde el Centro de Fomento de la Identidad y Construcción de la Comunidad, particularmente en el Programa de Participación Universitaria y acompañados directamente por la Facultad de Ingeniería. \nRealizamos actividades que involucran principalmente a los estudiantes de la Facultad de Ingeniería y estudiantes de colegios que están interesados en la carrera de Ingeniería de Sistemas, además participamos en la Maratón Nacional de Programación que se realiza cada año, sin embargo, abrimos las puertas para todas las personas que se encuentren interesadas a apoyarnos y a contribuir al objetivo de ACM.",
 	"queEsEntrenamientos": "Es un espacio en donde un integrante de ACM da a conocer un nuevo tema o un tema por reforzar, se explica la lógica de este y luego se realiza la práctica con unos ejercicios propuestos, durante esta se resuelven dudas y luego se comparte las soluciones que demás personas le dieron a esos problemas.",
 	"queEsMaratones": "Son las competencias en donde tres personas participan como un equipo resolviendo una serie de ejercicios propuestos, competimos para ser los mejores programadores en Colombia y el mundo, esta actividad promueve el trabajo en equipo, la  sana competencia y la integración con demás equipos, universidades y países que pertenecen al mismo medio.",
 	"university": {
@@ -21,6 +21,11 @@
 		"phone": "(57 1) 3208320"
 	},
 	"networks": [
+		{
+			"text": "Capitulo Javeriano",
+			"link": "https://www.instagram.com/capitulojaveriano/",
+			"icon": "acm-instagram"
+		},
 		{
 			"text": "ACMJaveriana",
 			"link": "https://www.facebook.com/acmjaveriana/",
@@ -59,6 +64,18 @@
 		{
 			"name": "Juan Manuel Sánchez Lozano",
 			"url": "https://github.com/juanmsl"
+		},
+		{
+			"name": "Dorian René Moreno",
+			"url": "https://github.com/"
+		},
+		{
+			"name": "Daniel Beltrán",
+			"url": "https://github.com/DanielBeltran2"
+		},
+		{
+			"name": "Camilo Serrano",
+			"url": "https://github.com/camiloserr"
 		}
 	],
 	"trainings": [
