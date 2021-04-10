@@ -1,10 +1,17 @@
 import $ from 'jquery';
+
 import React from 'react';
-import Remarkable from 'remarkable';
+
+import { Remarkable } from 'remarkable';
 import hljs from 'highlight.js';
+
 import { ACMWebPage } from '../../components';
 
+
+
 hljs.initHighlightingOnLoad();
+
+
 
 var md = new Remarkable('full', {
 	html: true,
@@ -29,7 +36,6 @@ var md = new Remarkable('full', {
 				return hljs.highlight(lang, str).value;
 			} catch (__) {}
 		}
-
 		try {
 			return hljs.highlightAuto(str).value;
 		} catch (__) {}
@@ -45,12 +51,16 @@ export default class ActivityScene extends React.Component {
 	}
 
 	componentDidMount() {
+
 		const { host, getActivity } = this.props.data;
+
 		this.get(host + getActivity + this.props.activityId + "/");
+
 	}
 
 	get = (url, type = 'GET') => {
 		$.ajax({
+
 			type: type,
 			url: url,
 			success: function(response) {
@@ -60,7 +70,9 @@ export default class ActivityScene extends React.Component {
 	};
 
 	renderMarkdown = (content) => {
+
 		return { __html: md.render(content) };
+
 	};
 
 	render() {
