@@ -16,14 +16,34 @@ This project is the Frontend of ACM chapter webpage, is develop with [React.js](
 - [Licence](#licence)
 
 ## Contributors
-| Name                       | GitHub                                | Rol                |
-| -------------------------- | ------------------------------------- | ------------------ |
-| Juan Manuel Sánchez Lozano | [juanmsl](https://github.com/juanmsl) | Frontend developer |
+| Name                       | GitHub                                         | Rol                |
+| -------------------------- | -----------------------------------------------| ------------------ |
+| Juan Manuel Sánchez Lozano | [juanmsl](https://github.com/juanmsl)          | Frontend developer |
+| Mateo Florido Sanchez      | [mateoflorido](https://github.com/mateoflorido)| Frontend & DevOps  |
 
 ## Prerequisites
 
 We recommend work on Linux or on a Unix system, because it's easier to install packages and frameworks; but, if you want to work on Windows you can do it.
 
+### Docker
+You must have `docker` installed and running on your computer. More information: [Docker](https://docs.docker.com/engine/install/)
+
+First build the docker container
+```shell
+$ docker build -t acmwebsite:dev
+```
+Then, spin up the container once the build is done
+```shell
+$ docker run \
+    -it \
+    --rm \
+    -v ${PWD}:/app \
+    -v /app/node_modules \
+    -p 3001:3000 \
+    -e CHOKIDAR_USEPOLLING=true \
+    acmwebsite:dev
+```
+If you want to run in "detached" mode, remember to run as `-itd` instead.
 ### Node (npm)
 
 You must have `node.js` on your computer, you can download it from their [Webpage](https://nodejs.org/en/download/package-manager/), or just run the following command if you are in a Debian and Ubuntu based Linux distribution.
