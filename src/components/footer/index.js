@@ -9,7 +9,7 @@ class Developer  extends React.Component {
 		const { url, name } = this.props;
 		return (
 			<p>
-				<a href={url} target="_blank">
+				<a href={url} target="_blank" rel="noopener noreferrer">
 					<span className="acm acm-user footer_icon">{name}</span>
 				</a>
 			</p>
@@ -22,7 +22,7 @@ class Network extends React.Component {
 		const { link, icon, text } = this.props;
 		return (
 			<p>
-				<a href={link} target="_blank">
+				<a href={link} target="_blank" rel="noopener noreferrer">
 					<span className={`acm ${icon} footer_icon`}>{text}</span>
 				</a>
 			</p>
