@@ -1,5 +1,5 @@
 {
-	"host": "http://acm.capitulojaveriano.com:8000",
+	"host": "acmbackend-service.default.svc.cluster.local:8080",
 	"getAwards": "/information/awards/",
     "getActivities": "/activities/activities/",
     "getActivity": "/activities/activities/",
