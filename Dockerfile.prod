@@ -1,13 +1,12 @@
 # Multistage file
 # Create Build environment
-FROM node:alpine as build
+FROM node:lts-alpine as build
 WORKDIR /acmwebsite
 ENV PATH /acmwebsite/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
 RUN apk add --update python2 g++ make
-RUN npm ci --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+RUN npm install --production 
 COPY . ./
 RUN npm run build
 
